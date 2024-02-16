@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Quattrocento_Sans } from "next/font/google";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Quattrocento_Sans({ weight: '400', subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Nav />
+        <div className="bg-[#1d1d1d]">
+          {children}
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }
