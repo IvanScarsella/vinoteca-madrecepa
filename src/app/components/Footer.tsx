@@ -13,13 +13,13 @@ export default function Nav() {
    return (
       <div className="bg-[#AF3935] h-full">
          <div className="flex flex-row justify-center items-center p-4">
-            <div className="w-1/3 p-4">
+            <div className="w-1/3 p-4 flex justify-center">
                <Image
                   src={logo}
                   alt='logo'
-                  width={48}
-                  height={48}
-                  className='container'
+                  width={144}
+                  height={144}
+               // className='h-20'
                />
             </div>
             <div className="w-1/3 p-4">
