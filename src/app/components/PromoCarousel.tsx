@@ -15,12 +15,12 @@ function PromoCarousel() {
    ]
 
    return (
-      <section className='max-container flex w-full items-center justify-between text-justify  max-xl:flex-col xl:p-4'>
+      <section className='max-container flex w-full items-center justify-between text-justify max-xl:flex-col xl:p-8 mx-auto'>
          <div className='max-container flex w-full items-center justify-between gap-10 text-justify max-xl:flex-col-reverse'>
             <Carousel
                {...settings}
-               className=' flex w-1/2 flex-row
-        max-xl:m-1  max-xl:justify-center max-lg:w-2/3
+               className=' flex w-1/2 flex-row mx-auto
+        xl:w-1/4
         '
             >
                {images.map((image, index) => (
