@@ -3,15 +3,13 @@
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Image from 'next/image'
-import imagen1 from '../../../public/imagen_carrusel_1.jpg'
-import imagen2 from '../../../public/imagen_carrusel_2.jpg'
-import imagen3 from '../../../public/imagen_carrusel_3.jpg'
+import imagen1 from '../../../public/bodega.png'
 
-function ImagesCarousel() {
+function CellarsCarousel() {
    const images = [
       { src: imagen1, alt: 'imagen' },
-      { src: imagen2, alt: 'imagen' },
-      { src: imagen3, alt: 'imagen' },
+      { src: imagen1, alt: 'imagen' },
+      { src: imagen1, alt: 'imagen' },
    ]
 
    return (
@@ -20,20 +18,21 @@ function ImagesCarousel() {
             <Carousel
                {...settings}
                className=' flex w-1/2 flex-row
-        max-xl:m-10  max-xl:justify-center max-lg:w-2/3
+        max-xl:m-1  max-xl:justify-center max-lg:w-2/3
         '
             >
                {images.map((image, index) => (
                   <div
                      key={index}
-                     className='flex w-full flex-1 flex-wrap items-center justify-center max-xl:mt-4 '
+                     className='flex w-full flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-white bg-opacity-30  border-solid border-[#325481] border-8 border-opacity-80'
                   >
+                     <p className='font-quattro italic text-4xl'>Bodega</p>
                      <Image
                         src={image.src}
                         alt={image.alt}
                         width={400}
                         height={300}
-                        className='max-h-full rounded-2xl  hover:shadow-3xl shadow-white'
+                        className='max-h-full rounded-2xl  hover:shadow-3xl shadow-white '
                      />
                   </div>
                ))}
@@ -54,4 +53,4 @@ const settings = {
    stopOnHover: true,
 }
 
-export default ImagesCarousel
+export default CellarsCarousel

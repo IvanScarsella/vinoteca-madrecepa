@@ -5,6 +5,7 @@
 .main-text {
    color: white;
    font-size: 12px;
-   line-height: 2.4;
-   text-align: center;
+   line-height: 1.4;
+   /* text-align: center; */
+   text-align: justify;
 }
