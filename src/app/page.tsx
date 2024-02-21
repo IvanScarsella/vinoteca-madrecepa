@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-4">
+    <main className="flex flex-col gap-4 px-4">
       <h1 className="main-text mx-auto mt-4 xl:text-4xl">
         Los mejores vinos de la ciudad los encontrás en
       </h1>
@@ -20,21 +20,20 @@ export default function Home() {
       <PromoCarousel />
       <h1 className=' text-center text-4xl text-white xl:text-6xl'>Nuestras Bodegas</h1>
       <CellarsCarousel />
-      <div className='flex flex-col xl:flex-row mx-20'>
-        <div className='flex flex-col xl:w-1/2 xl:gap-4'>
-
+      <div className='flex flex-col xl:flex-row mx-14'>
+        <div className='flex flex-col gap-4 xl:w-1/2'>
           <h2 className=' text-center text-4xl text-white xl:text-6xl'>Nosotros</h2>
-          <p className='main-text indent-2 text-justify mx-8 xl:mx-40 xl:text-xl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id es. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur ma
+          <p className='main-text indent-2 text-justify mb-4 xl:mx-40 xl:text-xl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id es. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur ma
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatu</p>
         </div>
-        <div className='w-1/4 justify-center mx-auto'>
+        <div className='flex justify-center xl:flex-row xl:items-center '>
 
           <Image
             src={imagen}
             alt='imagen'
             width={300}
             height={200}
-            className='container'
+            className='container h-[300px] w-[200px] xl:h-[450px] xl:w-[300px]'
           />
         </div>
       </div>
