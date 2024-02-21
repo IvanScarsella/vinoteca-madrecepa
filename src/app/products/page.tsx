@@ -25,10 +25,10 @@ export default function Products() {
    ]
    return (
       <main className="p-8 pt-10 h-full">
-         <div className="flex flex-col justify-around text-white h-[400]">
+         <div className="flex flex-col xl:flex-row justify-around text-white h-[400]">
             <div>
                {/* <h3 className="text-lg ">Filtros</h3> */}
-               <div className="flex flex-col">
+               <div className="flex flex-col xl:flex-row">
                   <div className="relative">
                      <div className="absolute z-[0] top-0 left-0 h-full w-full bg-center bg-no-repeat opacity-30"
                         style={{
@@ -88,7 +88,7 @@ export default function Products() {
                </div>
 
             </div>
-            <div className="bg-[#753945] w-24 h-1 my-auto self-center" />
+            <div className="bg-[#753945] w-24 xl:w-1 h-1 xl:h-24 my-auto self-center" />
             <div className="flex flex-col items-center">
                <h3 className="text-2xl">Orden</h3>
                <p className="text-base">A-Z</p>
