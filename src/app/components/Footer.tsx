@@ -1,5 +1,6 @@
 import Image from "next/image";
 import logo from '../../../public/logo.jpg';
+import Link from "next/link";
 
 export default function Nav() {
    const itemsNav = [
@@ -23,25 +24,29 @@ export default function Nav() {
                />
             </div>
             <div className="w-1/3 p-4">
-               <div className="w-full">
+               <div className="w-full xl:flex xl:flex-row xl:justify-around xl:gap-8">
                   {itemsNav.map(item => (
                      <div className="flex flex-row items-center justify-center p-1 gap-2 pl-2">
                         {/* <IoIosWine /> */}
-                        <p className="text-base text-white">{item.title}</p>
+                        <p className="text-base xl:text-2xl text-white">{item.title}</p>
                      </div>
                   ))}
                </div>
             </div>
-            <div className="w-1/3 p-4 text-base flex flex-col justify-center gap-2">
+            <div className="w-1/3 p-4 text-base flex flex-col justify-center gap-2 xl:items-center">
                <p>Teléfono:</p>
                <p>123456789</p>
-               <p>mail@mail.com</p>
+               <Link href="mailto:mail@mail.com" target="_blank">
+                  <p>mail@mail.com</p>
+               </Link>
                <p>Calle 123</p>
                <p>City Bell</p>
             </div>
          </div>
-         <div className="flex flex-row justify-center p-4">
-            <p>Desarrollado por Iván Scarsella</p>
+         <div className="flex flex-row justify-center p-4 text-white">
+            <Link href="mailto:scarsellaivan@gmail.com" target="_blank">
+               <p>Desarrollado por Iván Scarsella</p>
+            </Link>
          </div>
       </div>
    );

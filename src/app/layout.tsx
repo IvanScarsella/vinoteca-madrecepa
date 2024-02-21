@@ -3,6 +3,7 @@ import { Quattrocento_Sans } from "next/font/google";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import "./globals.css";
+import WhatsApp from "./components/Whatsapp";
 
 const inter = Quattrocento_Sans({ weight: '400', subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <div className="bg-[#1d1d1d]">
           {children}
         </div>
+        <WhatsApp />
         <Footer />
       </body>
     </html>
