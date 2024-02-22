@@ -15,11 +15,11 @@ function CellarsCarousel() {
    const settings = {
       dots: false,
       infinite: true,
-      speed: 2000,
+      speed: 4000,
       slidesToShow: 2,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 500,
+      autoplaySpeed: 1000,
    };
 
    return (
@@ -28,8 +28,8 @@ function CellarsCarousel() {
             <Slider {...settings} className='flex w-2/3 flex-row mx-auto xl:w-2/3'>
                {images.map((image, index) => (
                   <div key={index} className=''>
-                     <div className='flex w-full flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-white bg-opacity-30 border-solid border-[#325481] border-8 border-opacity-80'>
-                        <p className='font-quattro italic text-sm xl:text-6xl'>Bodega</p>
+                     <div className='flex w-full flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-gray-900 bg-opacity-100 border-2 border-gray-700 border-opacity-80'>
+                        <p className='font-quattro italic text-sm xl:text-6xl text-white '>Bodega</p>
                         <Image
                            src={image.src}
                            alt={image.alt}

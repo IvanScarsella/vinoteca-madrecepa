@@ -1,4 +1,5 @@
 import Card from '../components/Card'
+import { MdOutlineSearch } from "react-icons/md";
 
 export default function Products() {
 
@@ -40,7 +41,7 @@ export default function Products() {
    ]
 
    return (
-      <main className="p-8 px-24 pt-10 h-full flex flex-col gap-4">
+      <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
          <div className="flex flex-col xl:flex-col justify-around text-white h-[400]">
             <div className="flex flex-row xl:flex-row flex-wrap xl:flex-nowrap">
                <div className="relative w-1/2">
@@ -144,8 +145,13 @@ export default function Products() {
             </div>
             {/* <div className="bg-[#753945] w-24 xl:w-1 h-1 xl:h-24 my-auto self-center" /> */}
          </div>
-         <div className="bg-white w-full h-6 text-center ">
-            Búsqueda
+         <div className=" w-full h-6 text-center flex flex-row">
+            <MdOutlineSearch className='bg-white h-8 w-10 flex flex-row items-center' />
+            <input
+               type='text'
+               placeholder='Buscar'
+               className='w-full h-8'
+            />
          </div>
          <div className='flex flex-col gap-4 xl:flex-wrap xl:flex-row justify-evenly'>
             {cards.map(card => (
