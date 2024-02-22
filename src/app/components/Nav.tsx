@@ -59,9 +59,10 @@ export default function Nav() {
          {toggle ?
             <div className="bg-[#903431]  w-full  xl:hidden">
                {itemsNav.map(item => (
-                  <div className="flex flex-row items-center p-1 gap-2 pl-2">
+                  <div className="flex flex-row items-center p-1 gap-2 pl-2"
+                     onClick={() => router.push('/products')} >
                      <IoIosWine />
-                     <p className="text-2xl">{item.title}</p>
+                     <p className="text-2xl cursor-pointer">{item.title}</p>
                   </div>
                ))}
             </div>

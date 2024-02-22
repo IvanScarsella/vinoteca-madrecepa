@@ -21,19 +21,19 @@ export default function Home() {
       <h1 className=' text-center text-4xl text-white xl:text-6xl'>Nuestras Bodegas</h1>
       <CellarsCarousel />
       <div className='flex flex-col xl:flex-row mx-14'>
-        <div className='flex flex-col gap-4 xl:w-1/2'>
+        <div className='flex flex-col justify-around xl:w-1/2'>
           <h2 className=' text-center text-4xl text-white xl:text-6xl'>Nosotros</h2>
           <p className='main-text indent-2 text-justify mb-4 xl:mx-40 xl:text-xl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id es. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur ma
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatu</p>
         </div>
-        <div className='flex justify-center xl:flex-row xl:items-center '>
+        <div className='flex justify-center xl:flex-row xl:items-center xl:mx-auto'>
 
           <Image
             src={imagen}
             alt='imagen'
-            width={300}
-            height={200}
-            className='container h-[300px] w-[200px] xl:h-[450px] xl:w-[300px]'
+            width={3000}
+            height={3000}
+            className='container h-[300px] w-[250px] xl:h-[600px] xl:w-[500px]'
           />
         </div>
       </div>
