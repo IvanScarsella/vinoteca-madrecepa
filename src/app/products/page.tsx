@@ -155,7 +155,7 @@ export default function Products() {
          </div>
          <div className='flex flex-col gap-4 xl:flex-wrap xl:flex-row justify-evenly'>
             {cards.map(card => (
-               <Card />
+               <Card key={card} />
             ))}
          </div>
       </main>
