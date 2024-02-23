@@ -26,7 +26,7 @@ export default function Nav() {
             <div className="w-1/3 p-4">
                <div className="w-full xl:flex xl:flex-row xl:justify-around xl:gap-8">
                   {itemsNav.map(item => (
-                     <div className="flex flex-row items-center justify-center p-1 gap-2 pl-2">
+                     <div className="flex flex-row items-center justify-center p-1 gap-2 pl-2" key={item.title}>
                         {/* <IoIosWine /> */}
                         <p className="text-base xl:text-2xl text-white">{item.title}</p>
                      </div>

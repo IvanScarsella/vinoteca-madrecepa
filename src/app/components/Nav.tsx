@@ -44,7 +44,7 @@ export default function Nav() {
                </div>
                {/* <div className="flex flex-row"> */}
                {itemsNav.map(item => (
-                  <a href="/products" className="max-xl:hidden">
+                  <a href="/products" className="max-xl:hidden" key={item.title}>
                      <div className="flex flex-row items-center p-1 gap-2 pl-2 max-xl:hidden"
                         onClick={() => router.push('/products')}
                      >
@@ -60,7 +60,9 @@ export default function Nav() {
             <div className="bg-[#903431]  w-full  xl:hidden">
                {itemsNav.map(item => (
                   <div className="flex flex-row items-center p-1 gap-2 pl-2"
-                     onClick={() => router.push('/products')} >
+                     onClick={() => router.push('/products')}
+                     key={item.title}
+                  >
                      <IoIosWine />
                      <p className="text-2xl cursor-pointer">{item.title}</p>
                   </div>
