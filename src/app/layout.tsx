@@ -9,7 +9,7 @@ import icon from './icon.png'
 const inter = Quattrocento_Sans({ weight: '400', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Create Next App',
+  title: 'Vinoteca Madrecepa',
   description: 'Explora nuestra vinoteca y descubre una selección excepcional de vinos de calidad. En MAD te ofrecemos una experiencia única de degustación de los clásicos hasta los más exclusivos. Dejate guiar por nuestros expertos en vinos y encuentra la bebida perfecta para cada ocasión.',
 };
 
