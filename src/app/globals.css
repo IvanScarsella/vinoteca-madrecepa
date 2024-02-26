@@ -9,3 +9,27 @@
   /* text-align: center; */
   text-align: justify;
 }
+
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+  background-color: #1d1d1d;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #af3935;
+  border-radius: 6px;
+  transition: background-color 1.3s;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #1d1d1d;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #AF3935C4;
+}
+
+body::-webkit-scrollbar-thumb:vertical:not(:hover):not(:active) {
+  border-radius: 0;
+}
