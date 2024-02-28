@@ -5,6 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    if (req.method === "GET") {
       // if (Object.keys(req.body).length === 0) {
       // Realizar operación GET
+      //
       try {
          const allWines = await prisma.wine.findMany();
          return res.status(200).json(allWines);
