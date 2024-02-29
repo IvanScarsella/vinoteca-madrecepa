@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
          console.log(error);
          return res.status(500).json({ error: error.message });
       }
-   } else {
+   } else if (req.method === "POST") {
       // Realizar operación POST
       console.log(req.body)
       const {
@@ -28,9 +28,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
          image
       } = req.body;
       try {
-         const newProperty = await prisma.wine.create({
+         const newProduct = await prisma.wine.create({
             data: {
-               name: name,
+               name,
                cellar,
                region,
                reserve,
@@ -42,9 +42,58 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
          });
 
-         return res.status(201).json(newProperty);
+         return res.status(201).json(newProduct);
       } catch (error: any) {
          console.log(error);
+         return res.status(400).json({ error: error.message });
+      }
+   } else if (req.method === 'PUT') {
+      const {
+         id,
+         name,
+         cellar,
+         region,
+         reserve,
+         barrel,
+         varietal,
+         milliliters,
+         organic,
+         image
+      } = req.body;
+      // console.log(varietal)
+      // const updatedVarietals: any = []
+      // varietal.forEach((element: any) => {
+      //    updatedVarietals.push(element.value)
+      // });
+      // console.log(updatedVarietals);
+
+      const isWine = await prisma.wine.findUnique({
+         where: {
+            id: id
+         }
+      })
+
+      try {
+         if (isWine) {
+            const updatedProduct = await prisma.wine.update({
+               where: { id: id },
+               data: {
+                  name,
+                  cellar,
+                  region,
+                  reserve,
+                  barrel,
+                  varietal,
+                  milliliters,
+                  organic,
+                  image
+               }
+            });
+
+            return res.status(200).json(updatedProduct);
+         }
+      } catch (error: any) {
+         console.error(error);
          return res.status(400).json({ error: error.message });
       }
    }

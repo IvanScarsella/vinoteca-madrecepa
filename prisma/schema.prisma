@@ -15,7 +15,7 @@ datasource db {
 }
 
 model Wine {
-   id          Int      @id @default(autoincrement())
+   id          String   @id @default(uuid())
    name        String
    cellar      String
    region      String

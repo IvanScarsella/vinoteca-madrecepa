@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import Card from '../components/Card';
 import { MdOutlineSearch } from 'react-icons/md';
+import { useRouter } from 'next/navigation';
 
 export default function Products() {
+
+   const router = useRouter()
    const [page, setPage] = useState(1);
 
    const strainFilters = ['Cepa 1', 'Cepa 2', 'Cepa 3'];
@@ -28,8 +31,19 @@ export default function Products() {
    const endIndex = startIndex + cardsPerPage;
    const displayedCards = allCards.slice(startIndex, endIndex);
 
+   const hola = process.env.NEXT_PUBLIC_DEVELOP
+
+   console.log(hola)
    return (
       <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
+         {process.env.NEXT_PUBLIC_DEVELOP ?
+            <button
+               className='text-white'
+               onClick={() => router.push('/editData')}
+            >
+               Editar
+            </button>
+            : null}
          <div className="flex flex-col xl:flex-col justify-around text-white h-[400]">
             <div className="flex flex-row xl:flex-row flex-wrap xl:flex-nowrap">
                <div className="relative w-1/2">
