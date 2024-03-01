@@ -3,6 +3,7 @@
 import axios from "axios"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 type Product = {
    id: string,
@@ -28,9 +29,10 @@ export default function EditData() {
    const [filename, setFilename] = useState('');
    const [imageURLs, setImageURLs] = useState<string[]>([]);
 
+   const router = useRouter()
 
    const handleChangeImage = async (event: any) => {
-      const allowedExtensions = /(\.png|\.jpeg|\.jpg)$/i;
+      const allowedExtensions = /(\.png|\.jpeg|\.jpg|\.heic)$/i;
       const selectedFile = event.target.files[0];
 
       if (!selectedFile || !allowedExtensions.exec(selectedFile.name)) {
@@ -62,10 +64,33 @@ export default function EditData() {
    };
 
    console.log(data)
+
    const varietals = [
-      'Malbec',
+      'Blanc de Malbecs',
+      'Blend',
+      'Blend de Blancas',
+      'Cabernet',
+      'Cabernet Franc',
       'Cabernet Sauvignon',
-      'Pinot Noir'
+      'Chardonay',
+      'Corte Tinto',
+      'Gran Assemblage',
+      'Gran Corte',
+      'Malbec',
+      'Malbec Rosé',
+      'Merlot',
+      'Petit Verdot',
+      'Pinot Noir',
+      'Red Blend',
+      'Rosado Blend',
+      'Sauvignon Blanc',
+      'Semillón',
+      'Syrah',
+      'Tannat',
+      'Tinto de Corte',
+      'Torrontés Tardío',
+      'Viognier',
+      'Viognier Dulce',
    ]
 
    const handleDropdownToggle = () => {
@@ -123,10 +148,25 @@ export default function EditData() {
       }
    }
 
+   const handleDeleteProduct = async (id: string) => {
+      try {
+         await axios.post(`/api/deleteProduct`, { id: id });
+         console.log("Producto eliminado:", id);
+      } catch (error) {
+         console.error("Error al eliminar el producto:", error);
+      }
+   }
+
    return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center p-2">
+         <button
+            className="text-white border border-white p-2"
+            onClick={() => router.push('/addProduct')}
+         >
+            Agregar nuevo producto
+         </button>
          {data ? data.map(product => (
-            <div key={product.id} className="flex flex-row w-full justify-between items-center flex-wrap text-white">
+            <div key={product.id} className="flex flex-row w-full justify-between items-center flex-wrap text-white gap-2 border-2 border-red-500 p-2">
                <p>{product.id}</p>
                <Image
                   src={product?.image}
@@ -135,51 +175,66 @@ export default function EditData() {
                   height={50}
                   className="max-h-16 max-w-16"
                />
-               <input
-                  className="text-black"
-                  type="text"
-                  placeholder={product.name}
-                  value={editingProductId === product.id ? product.name : ''}
-                  onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, name: e.target.value } : p))}
-                  onFocus={() => setEditingProductId(product.id)}
-                  onBlur={() => setEditingProductId(null)}
-               />
-               <input
-                  className="text-black"
-                  type="text"
-                  placeholder={product.cellar}
-                  value={editingProductId === product.id ? product.cellar : ''}
-                  onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, cellar: e.target.value } : p))}
-                  onFocus={() => setEditingProductId(product.id)}
-                  onBlur={() => setEditingProductId(null)}
-               />
-               <input
-                  className="text-black"
-                  type="text"
-                  placeholder={product.region}
-                  value={editingProductId === product.id ? product.region : ''}
-                  onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, region: e.target.value } : p))}
-                  onFocus={() => setEditingProductId(product.id)}
-                  onBlur={() => setEditingProductId(null)}
-               />
-               <input
-                  className="text-black"
-                  type="text"
-                  placeholder={product.reserve}
-                  value={editingProductId === product.id ? product.reserve : ''}
-                  onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, reserve: e.target.value } : p))}
-                  onFocus={() => setEditingProductId(product.id)}
-                  onBlur={() => setEditingProductId(null)}
-               />
-               <input
-                  className="text-black"
-                  type="text"
-                  placeholder={product.barrel}
-                  value={editingProductId === product.id ? product.barrel : ''}
-                  onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, barrel: e.target.value } : p))}
-                  onFocus={() => setEditingProductId(product.id)}
-                  onBlur={() => setEditingProductId(null)}
-               />
+               <label>
+                  Nombre:
+                  <input
+                     className="text-black"
+                     type="text"
+                     placeholder={product.name}
+                     value={editingProductId === product.id ? product.name : ''}
+                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, name: e.target.value } : p))}
+                     onFocus={() => setEditingProductId(product.id)}
+                     onBlur={() => setEditingProductId(null)}
+                  />
+               </label>
+               <label>
+                  Bodega:
+                  <input
+                     className="text-black"
+                     type="text"
+                     placeholder={product.cellar}
+                     value={editingProductId === product.id ? product.cellar : ''}
+                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, cellar: e.target.value } : p))}
+                     onFocus={() => setEditingProductId(product.id)}
+                     onBlur={() => setEditingProductId(null)}
+                  />
+               </label>
+               <label>
+                  Región:
+                  <input
+                     className="text-black"
+                     type="text"
+                     placeholder={product.region}
+                     value={editingProductId === product.id ? product.region : ''}
+                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, region: e.target.value } : p))}
+                     onFocus={() => setEditingProductId(product.id)}
+                     onBlur={() => setEditingProductId(null)}
+                  />
+               </label>
+               <label>
+                  Reserva
+                  <input
+                     className="text-black"
+                     type="text"
+                     placeholder={product.reserve}
+                     value={editingProductId === product.id ? product.reserve : ''}
+                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, reserve: e.target.value } : p))}
+                     onFocus={() => setEditingProductId(product.id)}
+                     onBlur={() => setEditingProductId(null)}
+                  />
+               </label>
+               <label>
+                  Tiempo de Barrica
+                  <input
+                     className="text-black"
+                     type="text"
+                     placeholder={product.barrel}
+                     value={editingProductId === product.id ? product.barrel : ''}
+                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, barrel: e.target.value } : p))}
+                     onFocus={() => setEditingProductId(product.id)}
+                     onBlur={() => setEditingProductId(null)}
+                  />
+               </label>
                <div className="flex flex-row">
                   <button onClick={handleDropdownToggle}>
                      {isDropdownOpen === true ? 'Ocultar' : 'Mostrar Varietales'}
@@ -187,7 +242,7 @@ export default function EditData() {
                   {isDropdownOpen && (
                      <div className="flex flex-col">
                         {varietals.map(varietal => (
-                           <label>
+                           <label key={varietal}>
                               <input
                                  type="checkbox"
                                  value={varietal}
@@ -221,14 +276,18 @@ export default function EditData() {
                   />
                   Orgánico
                </label>
-               <input
-                  type="file"
-                  onChange={(e) => {
-                     const file = e.target.files && e.target.files[0];
-                     handleChangeImage(e)
-                  }}
-               />
-               <button onClick={() => handleUpdateProduct(product)}>Guardar</button>
+               <label>
+                  Imagen:
+                  <input
+                     type="file"
+                     onChange={(e) => {
+                        const file = e.target.files && e.target.files[0];
+                        handleChangeImage(e)
+                     }}
+                  />
+               </label>
+               <button className="w-full h-12 border border-white" onClick={() => handleUpdateProduct(product)}>Guardar</button>
+               <button className="w-full" disabled onClick={() => handleDeleteProduct(product.id)}>Eliminar</button>
             </div>
          )) : null}
       </div>

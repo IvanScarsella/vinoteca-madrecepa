@@ -97,5 +97,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
          return res.status(400).json({ error: error.message });
       }
    }
+   //  else if (req.method === 'DELETE') {
+
+   //    const { id } = req.query;
+   //    try {
+
+   //       const deletedProduct = await prisma.wine.delete({
+   //          where: { id: id }
+   //       });
+
+   //       return res.status(200).json(deletedProduct);
+   //    } catch (error: any) {
+   //       console.error(error);
+   //       return res.status(400).json({ error: error.message });
+   //    }
+   // }
+
 }
 // }
