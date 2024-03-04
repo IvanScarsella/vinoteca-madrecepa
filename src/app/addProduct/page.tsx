@@ -14,10 +14,10 @@ export default function AddProduct() {
    const [organic, setOrganic] = useState(false);
    const [selectedVarietals, setSelectedVarietals] = useState<string[]>([]);
    const [image, setImage] = useState("");
-   const [file, setFile] = useState<File | null>(null);
+   const [imageURL, setImageURL] = useState('')
+   const [file, setFile] = useState(null);
    const [filename, setFilename] = useState("");
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-   console.log(selectedVarietals)
    const router = useRouter()
 
    const handleDropdownToggle = () => {
@@ -29,6 +29,37 @@ export default function AddProduct() {
          setSelectedVarietals(prevState => [...prevState, value]);
       } else {
          setSelectedVarietals(prevState => prevState.filter(option => option !== value));
+      }
+   };
+
+   const handleChangeImage = async (event: any) => {
+      const allowedExtensions = /(\.png|\.jpeg|\.jpg|\.heic)$/i;
+      const selectedFile = event.target.files[0];
+
+      if (!selectedFile || !allowedExtensions.exec(selectedFile.name)) {
+         alert("Invalid file format. Please select a .png, .jpg or .jpeg file.");
+         event.target.value = "";
+      } else {
+         setFile(selectedFile);
+         setFilename(selectedFile.name);
+         const formData = new FormData();
+         formData.append("image", selectedFile);
+         const response = await axios.post("https://api.imgbb.com/1/upload", formData, {
+            headers: {
+               "Content-Type": "multipart/form-data",
+            },
+            params: {
+               key: process.env.NEXT_PUBLIC_IMGBB,
+            },
+         });
+
+         if (response.data && response.data.data) {
+            const photoUrl = response.data.data.url;
+            setImageURL(photoUrl)
+            setFile(null);
+            setFilename("");
+            console.log('imagen agregada correctamente:', photoUrl)
+         }
       }
    };
 
@@ -71,7 +102,7 @@ export default function AddProduct() {
             milliliters: Number(milliliters),
             organic,
             varietal: selectedVarietals,
-            image
+            image: imageURL
          };
 
          await axios.post("/api/products", newProduct);
@@ -164,7 +195,7 @@ export default function AddProduct() {
                   onChange={(e) => setOrganic(e.target.checked)}
                />
             </label>
-            <div className="flex flex-row">
+            <div className="flex flex-row cursor-pointer">
                <p onClick={handleDropdownToggle}>
                   {isDropdownOpen === true ? 'Ocultar' : 'Mostrar Varietales'}
                </p>
@@ -190,10 +221,7 @@ export default function AddProduct() {
                   type="file"
                   onChange={(e) => {
                      const file = e.target.files && e.target.files[0];
-                     if (file) {
-                        setFile(file);
-                        setFilename(file.name);
-                     }
+                     handleChangeImage(e)
                   }}
                />
             </label>

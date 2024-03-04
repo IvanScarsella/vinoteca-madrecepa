@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                image
             }
          });
-
+         console.log(newProduct)
          return res.status(201).json(newProduct);
       } catch (error: any) {
          console.log(error);

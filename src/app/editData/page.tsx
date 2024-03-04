@@ -49,7 +49,7 @@ export default function EditData() {
                "Content-Type": "multipart/form-data",
             },
             params: {
-               key: process.env.NEXT_PUBLIC_IMGBB, // Reemplaza esto con tu clave de API de ImgBB
+               key: process.env.NEXT_PUBLIC_IMGBB,
             },
          });
 
@@ -287,7 +287,10 @@ export default function EditData() {
                   />
                </label>
                <button className="w-full h-12 border border-white" onClick={() => handleUpdateProduct(product)}>Guardar</button>
-               <button className="w-full" disabled onClick={() => handleDeleteProduct(product.id)}>Eliminar</button>
+               <button className="w-full"
+                  //  disabled
+                  onClick={() => handleDeleteProduct(product.id)}
+               >Eliminar</button>
             </div>
          )) : null}
       </div>
