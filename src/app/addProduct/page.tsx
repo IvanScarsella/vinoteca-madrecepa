@@ -9,7 +9,7 @@ export default function AddProduct() {
    const [cellar, setCellar] = useState("");
    const [region, setRegion] = useState("");
    const [reserve, setReserve] = useState("");
-   const [barrel, setBarrel] = useState("");
+   const [barrel, setBarrel] = useState("0");
    const [milliliters, setMilliliters] = useState("750");
    const [organic, setOrganic] = useState(false);
    const [selectedVarietals, setSelectedVarietals] = useState<string[]>([]);
@@ -98,7 +98,7 @@ export default function AddProduct() {
             cellar,
             region,
             reserve,
-            barrel,
+            barrel: barrel === '0' ? '' : barrel + ' meses',
             milliliters: Number(milliliters),
             organic,
             varietal: selectedVarietals,
@@ -173,7 +173,7 @@ export default function AddProduct() {
                Tiempo de Barrica
                <input
                   className='text-black'
-                  type="text"
+                  type="number"
                   value={barrel}
                   onChange={(e) => setBarrel(e.target.value)}
                />

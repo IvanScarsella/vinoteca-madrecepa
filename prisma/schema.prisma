@@ -5,24 +5,24 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-   provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-   provider  = "postgresql"
-   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Wine {
-   id          String   @id @default(uuid())
-   name        String
-   cellar      String
-   region      String
-   reserve     String
-   barrel      String
-   varietal    String[]
-   milliliters Int      @default(750)
-   organic     Boolean  @default(false)
-   image       String
+  id          String   @id @default(uuid())
+  name        String
+  cellar      String
+  region      String
+  reserve     String
+  barrel      String
+  varietal    String[]
+  milliliters Int      @default(750)
+  organic     Boolean  @default(false)
+  image       String
 }

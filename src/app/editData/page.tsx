@@ -21,14 +21,15 @@ type Product = {
 export default function EditData() {
    const [data, setData] = useState<Product[]>([])
    const [editingProductId, setEditingProductId] = useState<string | null>(null)
-   const [selectedVarietals, setSelectedVarietals] = useState<{ productId: string; value: string; }[]>([]);
+   const [product, setProduct] = useState<Product>()
+   const [selectedVarietals, setSelectedVarietals] = useState<string[]>([]);
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    const [isOrganic, setIsOrganic] = useState(false)
    const [imageURL, setImageURL] = useState('')
    const [file, setFile] = useState(null);
    const [filename, setFilename] = useState('');
    const [imageURLs, setImageURLs] = useState<string[]>([]);
-
+   // console.log(selectedVarietals)
    const router = useRouter()
 
    const handleChangeImage = async (event: any) => {
@@ -63,7 +64,7 @@ export default function EditData() {
       }
    };
 
-   console.log(data)
+   // console.log(data)
 
    const varietals = [
       'Blanc de Malbecs',
@@ -97,13 +98,29 @@ export default function EditData() {
       setIsDropdownOpen(prevState => !prevState);
    };
 
-   const handleCheckboxChange = (productId: string, value: string, checked: boolean) => {
-      if (checked) {
-         setSelectedVarietals(prevState => [...prevState, { productId, value }]);
-      } else {
-         setSelectedVarietals(prevState => prevState.filter(option => !(option.productId === productId && option.value === value)));
+   const handleCheckboxChange = (value: string) => {
+      if (!selectedVarietals.includes(value)) {
+         let array: any = [...selectedVarietals]
+         console.log(value)
+         array.push(value)
+         setSelectedVarietals(array)
       }
-   };
+      else if (selectedVarietals.includes(value)) {
+         let array: any = []
+         for (let i = 0; i < selectedVarietals.length; i++) {
+            if (selectedVarietals[i] !== value) {
+               array.push(selectedVarietals[i])
+            }
+         }
+         setSelectedVarietals(array)
+      }
+   }
+   // if (checked) {
+   //    setSelectedVarietals(prevState => [...prevState, { productId, value }]);
+   // } else {
+   //    setSelectedVarietals(prevState => prevState.filter(option => !(option.productId === productId && option.value === value)));
+   // }
+   // };
 
    useEffect(() => {
       const fetchData = async () => {
@@ -113,13 +130,13 @@ export default function EditData() {
 
             setData(products);
 
-            const initialSelectedVarietals = products.map(product => (
-               product.varietal.map(value => ({
-                  productId: product.id,
-                  value: value
-               }))
-            )).flat();
-            setSelectedVarietals(initialSelectedVarietals);
+            // const initialSelectedVarietals = products.map(product => (
+            //    product.varietal.map(value => ({
+            //       productId: product.id,
+            //       value: value
+            //    }))
+            // )).flat();
+            // setSelectedVarietals(initialSelectedVarietals);
 
             const allOrganic = products.every(product => product.organic);
             setIsOrganic(allOrganic);
@@ -133,16 +150,22 @@ export default function EditData() {
 
       fetchData();
    }, []);
-
+   // console.log(selectedVarietals)
    const handleUpdateProduct = async (updatedProduct: Product) => {
       try {
          const updateProduct = {
             ...updatedProduct,
-            varietal: selectedVarietals.map(option => option.value),
-            image: imageURL
+            id: product?.id,
+            varietal: selectedVarietals.length ? selectedVarietals : product?.varietal,
+            // varietal: selectedVarietals.map(option => option.value),
+            image: imageURL ? imageURL : product?.image
          };
          await axios.put(`/api/products`, updateProduct);
          console.log("Producto actualizado:", updateProduct);
+         // setProduct()
+         setSelectedVarietals([])
+         setIsOrganic(false)
+         window.location.reload()
       } catch (error) {
          console.error("Error al actualizar el producto:", error);
       }
@@ -152,6 +175,7 @@ export default function EditData() {
       try {
          await axios.post(`/api/deleteProduct`, { id: id });
          console.log("Producto eliminado:", id);
+         window.location.reload()
       } catch (error) {
          console.error("Error al eliminar el producto:", error);
       }
@@ -165,7 +189,16 @@ export default function EditData() {
          >
             Agregar nuevo producto
          </button>
-         {data ? data.map(product => (
+         <div className="flex flex-row gap-2">
+
+            {data ? data.map(product => (
+               <p
+                  onClick={() => setProduct(product)}
+                  className="text-white cursor-pointer border border-red-500"
+               >{product.name}</p>
+            )) : null}
+         </div>
+         {product ?
             <div key={product.id} className="flex flex-row w-full justify-between items-center flex-wrap text-white gap-2 border-2 border-red-500 p-2">
                <p>{product.id}</p>
                <Image
@@ -246,8 +279,9 @@ export default function EditData() {
                               <input
                                  type="checkbox"
                                  value={varietal}
-                                 checked={selectedVarietals.some(option => option.productId === product.id && option.value === varietal)}
-                                 onChange={(e) => handleCheckboxChange(product.id, varietal, e.target.checked)}
+                                 // checked={selectedVarietals.some(option => option === varietal)}
+                                 checked={selectedVarietals.length ? selectedVarietals.some(option => option === varietal) : product.varietal.includes(varietal)}
+                                 onChange={(e) => handleCheckboxChange(varietal)}
                               />
                               {varietal}
                            </label>
@@ -292,7 +326,7 @@ export default function EditData() {
                   onClick={() => handleDeleteProduct(product.id)}
                >Eliminar</button>
             </div>
-         )) : null}
+            : null}
       </div>
    )
 }
