@@ -67,31 +67,53 @@ export default function EditData() {
    // console.log(data)
 
    const varietals = [
+      'Ancelotta',
       'Blanc de Malbecs',
+      'Blanco Dulce',
       'Blend',
-      'Blend (Malbec - Cabernet)',
-      'Blend (Malbec - Merlot)',
       'Blend de Blancas',
+      'Blend de Malbecs',
+      'Blend de Tintos',
+      'Blend (Cabernet Sauvignon - Cabernet Franc)',
+      'Blend (Malbec - Cabernet)',
+      'Blend (Malbec - Cabernet Franc)',
+      'Blend (Malbec - Merlot)',
+      'Blend (Malbec - Syrah)',
+      'Blend (Merlot - Cabernet Sauvignon)',
+      'Blend (Moscatel - Torrontés)',
+      'Blend (Cabernet Franc - Cabernet Sauvignon - Petit Verdot)',
       'Bonarda',
       'Cabernet',
       'Cabernet Franc',
       'Cabernet Sauvignon',
+      'Camporotondo',
+      'Carmenere',
       'Chardonnay',
+      'Chenin Dulce',
+      'Corte',
       'Corte Tinto',
+      'Dulce Natural',
       'Gran Assemblage',
       'Gran Corte',
+      'Gran Malbec',
       'Malbec',
       'Malbec Rosé',
       'Merlot',
       'Petit Verdot',
       'Pinot Noir',
       'Red Blend',
+      'Rosado',
       'Rosado Blend',
+      'Sangiovese',
       'Sauvignon Blanc',
       'Semillón',
       'Syrah',
       'Tannat',
+      'Tempranillo',
+      'Tinto',
       'Tinto de Corte',
+      'Torrontés',
+      'Torrontés Dulce Natural',
       'Torrontés Tardío',
       'Viognier',
       'Viognier Dulce',
@@ -131,7 +153,15 @@ export default function EditData() {
             const response = await axios.get<Product[]>('/api/products');
             const products = response.data;
 
-            setData(products);
+            setData(products.sort(function (a, b) {
+               if (a.name > b.name) {
+                  return 1;
+               }
+               if (a.name < b.name) {
+                  return -1;
+               }
+               return 0;
+            }));
 
             // const initialSelectedVarietals = products.map(product => (
             //    product.varietal.map(value => ({
@@ -192,12 +222,12 @@ export default function EditData() {
          >
             Agregar nuevo producto
          </button>
-         <div className="flex flex-row gap-2">
+         <div className="gap-2 grid grid-cols-3">
 
             {data ? data.map(product => (
                <p
                   onClick={() => setProduct(product)}
-                  className="text-white cursor-pointer border border-red-500"
+                  className="text-white cursor-pointer border border-red-500 bg-black"
                >{product.name}</p>
             )) : null}
          </div>
