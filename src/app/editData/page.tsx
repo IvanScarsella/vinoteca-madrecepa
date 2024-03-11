@@ -140,12 +140,6 @@ export default function EditData() {
          setSelectedVarietals(array)
       }
    }
-   // if (checked) {
-   //    setSelectedVarietals(prevState => [...prevState, { productId, value }]);
-   // } else {
-   //    setSelectedVarietals(prevState => prevState.filter(option => !(option.productId === productId && option.value === value)));
-   // }
-   // };
 
    useEffect(() => {
       const fetchData = async () => {
@@ -163,14 +157,6 @@ export default function EditData() {
                return 0;
             }));
 
-            // const initialSelectedVarietals = products.map(product => (
-            //    product.varietal.map(value => ({
-            //       productId: product.id,
-            //       value: value
-            //    }))
-            // )).flat();
-            // setSelectedVarietals(initialSelectedVarietals);
-
             const allOrganic = products.every(product => product.organic);
             setIsOrganic(allOrganic);
 
@@ -183,7 +169,7 @@ export default function EditData() {
 
       fetchData();
    }, []);
-   // console.log(selectedVarietals)
+
    const handleUpdateProduct = async (updatedProduct: Product) => {
       try {
          const updateProduct = {
@@ -215,151 +201,157 @@ export default function EditData() {
    }
 
    return (
-      <div className="flex flex-col items-center p-2">
-         <button
-            className="text-white border border-white p-2"
-            onClick={() => router.push('/addProduct')}
-         >
-            Agregar nuevo producto
-         </button>
-         <div className="gap-2 grid grid-cols-3">
-
-            {data ? data.map(product => (
-               <p
-                  onClick={() => setProduct(product)}
-                  className="text-white cursor-pointer border border-red-500 bg-black"
-               >{product.name}</p>
-            )) : null}
-         </div>
-         {product ?
-            <div key={product.id} className="flex flex-row w-full justify-between items-center flex-wrap text-white gap-2 border-2 border-red-500 p-2">
-               <p>{product.id}</p>
-               <Image
-                  src={product?.image}
-                  alt='imagen'
-                  width={50}
-                  height={50}
-                  className="max-h-16 max-w-16"
-               />
-               <label>
-                  Nombre:
-                  <input
-                     className="text-black"
-                     type="text"
-                     placeholder={product.name}
-                     value={editingProductId === product.id ? product.name : ''}
-                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, name: e.target.value } : p))}
-                     onFocus={() => setEditingProductId(product.id)}
-                     onBlur={() => setEditingProductId(null)}
-                  />
-               </label>
-               <label>
-                  Bodega:
-                  <input
-                     className="text-black"
-                     type="text"
-                     placeholder={product.cellar}
-                     value={editingProductId === product.id ? product.cellar : ''}
-                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, cellar: e.target.value } : p))}
-                     onFocus={() => setEditingProductId(product.id)}
-                     onBlur={() => setEditingProductId(null)}
-                  />
-               </label>
-               <label>
-                  Región:
-                  <input
-                     className="text-black"
-                     type="text"
-                     placeholder={product.region}
-                     value={editingProductId === product.id ? product.region : ''}
-                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, region: e.target.value } : p))}
-                     onFocus={() => setEditingProductId(product.id)}
-                     onBlur={() => setEditingProductId(null)}
-                  />
-               </label>
-               <label>
-                  Reserva
-                  <input
-                     className="text-black"
-                     type="text"
-                     placeholder={product.reserve}
-                     value={editingProductId === product.id ? product.reserve : ''}
-                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, reserve: e.target.value } : p))}
-                     onFocus={() => setEditingProductId(product.id)}
-                     onBlur={() => setEditingProductId(null)}
-                  />
-               </label>
-               <label>
-                  Tiempo de Barrica
-                  <input
-                     className="text-black"
-                     type="text"
-                     placeholder={product.barrel}
-                     value={editingProductId === product.id ? product.barrel : ''}
-                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, barrel: e.target.value } : p))}
-                     onFocus={() => setEditingProductId(product.id)}
-                     onBlur={() => setEditingProductId(null)}
-                  />
-               </label>
-               <div className="flex flex-row">
-                  <button onClick={handleDropdownToggle}>
-                     {isDropdownOpen === true ? 'Ocultar' : 'Mostrar Varietales'}
+      <>
+         <div className="flex flex-col items-center p-2">
+            {process.env.NEXT_PUBLIC_DEVELOP ?
+               <>
+                  <button
+                     className="text-white border border-white p-2"
+                     onClick={() => router.push('/addProduct')}
+                  >
+                     Agregar nuevo producto
                   </button>
-                  {isDropdownOpen && (
-                     <div className="flex flex-col">
-                        {varietals.map(varietal => (
-                           <label key={varietal}>
-                              <input
-                                 type="checkbox"
-                                 value={varietal}
-                                 // checked={selectedVarietals.some(option => option === varietal)}
-                                 checked={selectedVarietals.length ? selectedVarietals.some(option => option === varietal) : product.varietal.includes(varietal)}
-                                 onChange={(e) => handleCheckboxChange(varietal)}
-                              />
-                              {varietal}
-                           </label>
-                        ))}
+                  <div className="gap-2 grid grid-cols-3">
+
+                     {data ? data.map(product => (
+                        <p
+                           onClick={() => setProduct(product)}
+                           className="text-white cursor-pointer border border-red-500 bg-black"
+                        >{product.name}</p>
+                     )) : null}
+                  </div>
+                  {product ?
+                     <div key={product.id} className="flex flex-row w-full justify-between items-center flex-wrap text-white gap-2 border-2 border-red-500 p-2">
+                        <p>{product.id}</p>
+                        <Image
+                           src={product?.image}
+                           alt='imagen'
+                           width={50}
+                           height={50}
+                           className="max-h-16 max-w-16"
+                        />
+                        <label>
+                           Nombre:
+                           <input
+                              className="text-black"
+                              type="text"
+                              placeholder={product.name}
+                              value={editingProductId === product.id ? product.name : ''}
+                              onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, name: e.target.value } : p))}
+                              onFocus={() => setEditingProductId(product.id)}
+                              onBlur={() => setEditingProductId(null)}
+                           />
+                        </label>
+                        <label>
+                           Bodega:
+                           <input
+                              className="text-black"
+                              type="text"
+                              placeholder={product.cellar}
+                              value={editingProductId === product.id ? product.cellar : ''}
+                              onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, cellar: e.target.value } : p))}
+                              onFocus={() => setEditingProductId(product.id)}
+                              onBlur={() => setEditingProductId(null)}
+                           />
+                        </label>
+                        <label>
+                           Región:
+                           <input
+                              className="text-black"
+                              type="text"
+                              placeholder={product.region}
+                              value={editingProductId === product.id ? product.region : ''}
+                              onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, region: e.target.value } : p))}
+                              onFocus={() => setEditingProductId(product.id)}
+                              onBlur={() => setEditingProductId(null)}
+                           />
+                        </label>
+                        <label>
+                           Reserva
+                           <input
+                              className="text-black"
+                              type="text"
+                              placeholder={product.reserve}
+                              value={editingProductId === product.id ? product.reserve : ''}
+                              onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, reserve: e.target.value } : p))}
+                              onFocus={() => setEditingProductId(product.id)}
+                              onBlur={() => setEditingProductId(null)}
+                           />
+                        </label>
+                        <label>
+                           Tiempo de Barrica
+                           <input
+                              className="text-black"
+                              type="text"
+                              placeholder={product.barrel}
+                              value={editingProductId === product.id ? product.barrel : ''}
+                              onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, barrel: e.target.value } : p))}
+                              onFocus={() => setEditingProductId(product.id)}
+                              onBlur={() => setEditingProductId(null)}
+                           />
+                        </label>
+                        <div className="flex flex-row">
+                           <button onClick={handleDropdownToggle}>
+                              {isDropdownOpen === true ? 'Ocultar' : 'Mostrar Varietales'}
+                           </button>
+                           {isDropdownOpen && (
+                              <div className="flex flex-col">
+                                 {varietals.map(varietal => (
+                                    <label key={varietal}>
+                                       <input
+                                          type="checkbox"
+                                          value={varietal}
+                                          // checked={selectedVarietals.some(option => option === varietal)}
+                                          checked={selectedVarietals.length ? selectedVarietals.some(option => option === varietal) : product.varietal.includes(varietal)}
+                                          onChange={(e) => handleCheckboxChange(varietal)}
+                                       />
+                                       {varietal}
+                                    </label>
+                                 ))}
+                              </div>
+                           )}
+                        </div>
+                        <input
+                           className="text-black"
+                           type="text"
+                           pattern="[0-9]*"
+                           placeholder={product.milliliters.toString()}
+                           value={editingProductId === product.id ? product.milliliters : ''}
+                           onChange={(e) => {
+                              const value = e.target.value.replace(/\D/, ''); // Solo permite números
+                              setData(prevData => prevData.map(p => p.id === product.id ? { ...p, milliliters: Number(value) } : p))
+                           }}
+                           onFocus={() => setEditingProductId(product.id)}
+                           onBlur={() => setEditingProductId(null)}
+                        />
+                        <label>
+                           <input
+                              type="checkbox"
+                              checked={product.organic}
+                              onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, organic: e.target.checked } : p))}
+                           />
+                           Orgánico
+                        </label>
+                        <label>
+                           Imagen:
+                           <input
+                              type="file"
+                              onChange={(e) => {
+                                 const file = e.target.files && e.target.files[0];
+                                 handleChangeImage(e)
+                              }}
+                           />
+                        </label>
+                        <button className="w-full h-12 border border-white" onClick={() => handleUpdateProduct(product)}>Guardar</button>
+                        <button className="w-full"
+                           //  disabled
+                           onClick={() => handleDeleteProduct(product.id)}
+                        >Eliminar</button>
                      </div>
-                  )}
-               </div>
-               <input
-                  className="text-black"
-                  type="text"
-                  pattern="[0-9]*"
-                  placeholder={product.milliliters.toString()}
-                  value={editingProductId === product.id ? product.milliliters : ''}
-                  onChange={(e) => {
-                     const value = e.target.value.replace(/\D/, ''); // Solo permite números
-                     setData(prevData => prevData.map(p => p.id === product.id ? { ...p, milliliters: Number(value) } : p))
-                  }}
-                  onFocus={() => setEditingProductId(product.id)}
-                  onBlur={() => setEditingProductId(null)}
-               />
-               <label>
-                  <input
-                     type="checkbox"
-                     checked={product.organic}
-                     onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, organic: e.target.checked } : p))}
-                  />
-                  Orgánico
-               </label>
-               <label>
-                  Imagen:
-                  <input
-                     type="file"
-                     onChange={(e) => {
-                        const file = e.target.files && e.target.files[0];
-                        handleChangeImage(e)
-                     }}
-                  />
-               </label>
-               <button className="w-full h-12 border border-white" onClick={() => handleUpdateProduct(product)}>Guardar</button>
-               <button className="w-full"
-                  //  disabled
-                  onClick={() => handleDeleteProduct(product.id)}
-               >Eliminar</button>
-            </div>
-            : null}
-      </div>
+                     : null}
+               </>
+               : null}
+         </div>
+      </>
    )
 }
