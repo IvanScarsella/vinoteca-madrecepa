@@ -1,3 +1,5 @@
+'use client'
+
 import PromoCarousel from '@/app/components/PromoCarousel';
 import CellarsCarousel from './components/CellarsCarousel';
 import Image from 'next/image';
@@ -9,8 +11,50 @@ import map from '../../public/map.png';
 import facebookLogo from '../../public/facebook_logo.png';
 import instagramLogo from '../../public/instagram_logo.png';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+type Product = {
+  id: string,
+  name: string,
+  cellar: string,
+  region: string,
+  reserve: string,
+  barrel: string,
+  varietal: string[],
+  milliliters: number,
+  organic: boolean,
+  image: string,
+}
 
 export default function Home() {
+
+  const [cellars, setCellars] = useState<Product[]>([])
+
+  useEffect(() => {
+    const getRelated = async () => {
+      try {
+        const response = await axios.get(`/api/products/`);
+        const uniqueCellars = [];
+
+        for (let i = 0; i < response.data.length; i++) {
+          const product = response.data[i];
+          const existingCellarIndex = uniqueCellars.findIndex(item => item.cellar === product.cellar);
+
+          if (existingCellarIndex === -1) {
+            uniqueCellars.push(product);
+          }
+        }
+        setCellars(uniqueCellars)
+      } catch (error) {
+        console.error('Error al obtener los productos relacionados:', error);
+      }
+    };
+    getRelated()
+  }, [])
+
+  console.log(cellars)
+
   return (
     <main className="flex flex-col gap-4 px-4">
       <h1 className="text-white text-sm mx-auto mt-5 xl:text-4xl ">
@@ -21,7 +65,7 @@ export default function Home() {
       <h1 className=" text-center text-4xl text-white xl:text-6xl">
         Nuestras Bodegas
       </h1>
-      <CellarsCarousel />
+      <CellarsCarousel cellars={cellars} />
       <div className="flex flex-col xl:flex-row mx-8 mb-2">
         <div className="flex flex-col justify-around xl:w-1/2">
           <h2 className=" text-center text-4xl text-white xl:text-6xl">

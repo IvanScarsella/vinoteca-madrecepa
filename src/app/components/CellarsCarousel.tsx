@@ -5,7 +5,23 @@ import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import imagen1 from '../../../public/bodega.png';
 
-function CellarsCarousel() {
+type Product = {
+  id: string,
+  name: string,
+  cellar: string,
+  region: string,
+  reserve: string,
+  barrel: string,
+  varietal: string[],
+  milliliters: number,
+  organic: boolean,
+  image: string,
+}
+
+function CellarsCarousel(cellars: Product) {
+
+  const data = cellars.cellars.slice(0, 15);
+
   const images = [
     { src: imagen1, alt: 'imagen' },
     { src: imagen1, alt: 'imagen' },
@@ -26,15 +42,15 @@ function CellarsCarousel() {
     <section className="max-container flex w-full items-center justify-between text-justify max-xl:flex-col xl:p-4">
       <div className="max-container flex w-full items-center justify-between gap-10 text-justify max-xl:flex-col-reverse">
         <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-2/3">
-          {images.map((image, index) => (
+          {data.map((cellar, index) => (
             <div key={index} className="">
-              <div className="flex w-full flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-gray-900 bg-opacity-100 border-2 border-gray-700 border-opacity-80">
-                <p className="font-quattro italic text-sm xl:text-6xl text-white ">
-                  Bodega
+              <div className="flex w-full flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-gray-900 bg-opacity-100 border-2 border-gray-700 border-opacity-80 p-4">
+                <p className="font-quattro italic text-sm xl:text-6xl text-white mb-4">
+                  {cellar.cellar}
                 </p>
                 <Image
-                  src={image.src}
-                  alt={image.alt}
+                  src={cellar.image}
+                  alt={cellar.name}
                   width={400}
                   height={300}
                   className="max-h-full rounded-2xl hover:shadow-3xl shadow-white"
