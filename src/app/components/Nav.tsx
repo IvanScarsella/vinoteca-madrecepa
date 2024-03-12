@@ -23,7 +23,7 @@ export default function Nav() {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col fixed top-0 w-full z-20">
         <div className=" bg-[#AF3935] flex flex-row justify-between xl:justify-around items-center p-4">
           <div className="w-16 h-16">
             <Image

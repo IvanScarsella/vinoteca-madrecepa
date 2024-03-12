@@ -26,7 +26,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Nav />
-        <div className="bg-[#1d1d1d]">{children}</div>
+        <div className="bg-[#1d1d1d] mt-24">{children}</div>
         <WhatsApp />
         <Footer />
       </body>
