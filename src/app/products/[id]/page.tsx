@@ -25,6 +25,7 @@ export default function Product(id: any) {
 
 
   const [product, setProduct] = useState<Product>()
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>()
 
   function getGradient(varietal: string[]) {
     let tinto = false
@@ -91,10 +92,20 @@ export default function Product(id: any) {
       const response = await axios.get(`/api/products/${id.params.id}`)
       setProduct(response.data)
     }
-
     getData()
   }, [])
+
+  useEffect(() => {
+    const getRelated = async () => {
+      const response = await axios.get(`/api/products/`)
+
+      setRelatedProducts(response.data.filter((item: any) => item.cellar === product?.cellar && item.id !== product?.id))
+    }
+    getRelated()
+  }, [product])
+
   const router = useRouter();
+
   return (
     <main className={`
     flex flex-col p-8 gap-4 px-10
@@ -166,7 +177,7 @@ export default function Product(id: any) {
           />
         </div>
       </div>
-      <h2 className="text-white text-2xl xl:text-5xl text-center">
+      <h2 className="text-white text-2xl xl:text-5xl text-center mt-8">
         Consulte por este producto
       </h2>
       <div className="flex items-center justify-center ">
@@ -175,7 +186,7 @@ export default function Product(id: any) {
           target="_blank"
         >
           <Image
-            className="hover:scale-125 max-xl: scale-75 max-xl:hover:scale-90"
+            className="hover:scale-125 max-xl:scale-75 max-xl:hover:scale-90"
             src={wsp}
             alt="whatsapp_logo"
             width={100}
@@ -183,9 +194,19 @@ export default function Product(id: any) {
           />
         </Link>
       </div>
-      <h4 className="text-white text-2xl text-center">Misma bodega</h4>
-      <div className="flex flex-row">
-        <div className="flex flex-col items-center w-1/2">
+      <h4 className="text-white text-3xl text-center my-4">Misma bodega</h4>
+      <div className="flex flex-row max-md:flex-col">
+        {relatedProducts ?
+          relatedProducts.map(item => (
+            <div className="flex flex-col items-center w-1/2 max-md:w-full cursor-pointer mx-auto hover:scale-110">
+              <h4 className="text-white text-2xl text-center">{item.name}</h4>
+              <div className="w-1/2">
+                <Image src={item.image} alt="imagen" width={1000} height={1000} onClick={() => router.push(`/products/${item.id}`)} />
+              </div>
+            </div>
+          ))
+          : null}
+        {/* <div className="flex flex-col items-center w-1/2">
           <h4 className="text-white text-2xl text-center">Otro vino</h4>
           <div className="w-1/2">
             <Image src={imagen} alt="imagen" width={1000} height={1000} />
@@ -193,13 +214,12 @@ export default function Product(id: any) {
         </div>
         <div
           className="flex flex-col items-center w-1/2 cursor-pointer"
-          onClick={() => router.push('/')}
         >
           <h4 className="text-white text-2xl text-center">Otro vino</h4>
           <div className="w-1/2">
             <Image src={imagen} alt="imagen" width={1000} height={1000} />
           </div>
-        </div>
+        </div> */}
       </div>
     </main >
   );
