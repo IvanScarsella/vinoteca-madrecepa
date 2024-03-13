@@ -13,33 +13,22 @@ import instagramLogo from '../../public/instagram_logo.png';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-type Product = {
-  id: string,
-  name: string,
-  cellar: string,
-  region: string,
-  reserve: string,
-  barrel: string,
-  varietal: string[],
-  milliliters: number,
-  organic: boolean,
-  image: string,
-}
+import { Product, useGlobalContext } from '../../context/store';
 
 export default function Home() {
 
   const [cellars, setCellars] = useState<Product[]>([])
 
+  const { products, setProducts } = useGlobalContext();
   useEffect(() => {
     const getRelated = async () => {
       try {
-        const response = await axios.get(`/api/products/`);
-        const uniqueCellars = [];
+        const uniqueCellars: Product[] = [];
 
-        for (let i = 0; i < response.data.length; i++) {
-          const product = response.data[i];
-          const existingCellarIndex = uniqueCellars.findIndex(item => item.cellar === product.cellar);
+        for (let i = 0; i < products.length; i++) {
+          const product = products[i];
+
+          const existingCellarIndex = uniqueCellars.findIndex((item: Product) => item.cellar === product.cellar);
 
           if (existingCellarIndex === -1) {
             uniqueCellars.push(product);
@@ -51,9 +40,7 @@ export default function Home() {
       }
     };
     getRelated()
-  }, [])
-
-  console.log(cellars)
+  }, [products])
 
   return (
     <main className="flex flex-col gap-4 px-4">

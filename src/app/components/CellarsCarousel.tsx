@@ -4,19 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import imagen1 from '../../../public/bodega.png';
-
-type Product = {
-  id: string,
-  name: string,
-  cellar: string,
-  region: string,
-  reserve: string,
-  barrel: string,
-  varietal: string[],
-  milliliters: number,
-  organic: boolean,
-  image: string,
-}
+import { Product } from '../../../context/store';
 
 function CellarsCarousel(cellars: Product) {
 

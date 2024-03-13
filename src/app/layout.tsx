@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import './globals.css';
 import WhatsApp from './components/Whatsapp';
 import icon from './icon.png'
+import { GlobalContextProvider } from '../../context/store';
 
 const inter = Quattrocento_Sans({ weight: '400', subsets: ['latin'] });
 
@@ -25,10 +26,12 @@ export default function RootLayout({
         <link rel='shortcut icon' href={icon.src} />
       </head>
       <body className={inter.className}>
-        <Nav />
-        <div className="bg-[#1d1d1d] mt-24">{children}</div>
-        <WhatsApp />
-        <Footer />
+        <GlobalContextProvider>
+          <Nav />
+          <div className="bg-[#1d1d1d] mt-24">{children}</div>
+          <WhatsApp />
+          <Footer />
+        </GlobalContextProvider>
       </body>
     </html >
   );

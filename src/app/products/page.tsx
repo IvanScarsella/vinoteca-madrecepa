@@ -5,19 +5,7 @@ import Card from '../components/Card';
 import { MdOutlineSearch } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-
-type Product = {
-   id: string,
-   name: string,
-   cellar: string,
-   region: string,
-   reserve: string,
-   barrel: string,
-   varietal: string[],
-   milliliters: number,
-   organic: boolean,
-   image: string,
-}
+import { Product, useGlobalContext } from '../../../context/store';
 
 export default function Products() {
 
@@ -36,8 +24,9 @@ export default function Products() {
 
    // const allCards = Array.from({ length: 18 }, (_, i) => `Card ${i + 1}`); // Simulación de datos de tarjetas
 
-   const [data, setData] = useState<Product[]>([])
+   // const [data, setData] = useState<Product[]>([])
 
+   const { products, setProducts } = useGlobalContext()
    const handleChangePage = (newPage: any) => {
       setPage(newPage);
    };
@@ -45,30 +34,31 @@ export default function Products() {
    const cardsPerPage = 15;
    const startIndex = (page - 1) * cardsPerPage;
    const endIndex = startIndex + cardsPerPage;
-   const displayedCards = data.slice(startIndex, endIndex);
+   const displayedCards = products.slice(startIndex, endIndex);
+   console.log(displayedCards)
 
-   useEffect(() => {
-      const fetchData = async () => {
-         try {
-            const response = await axios.get<Product[]>('/api/products');
-            const products = response.data;
+   // useEffect(() => {
+   //    const fetchData = async () => {
+   //       try {
+   //          const response = await axios.get<Product[]>('/api/products');
+   //          const products = response.data;
 
-            setData(products.sort(function (a, b) {
-               if (a.name > b.name) {
-                  return 1;
-               }
-               if (a.name < b.name) {
-                  return -1;
-               }
-               return 0;
-            }));
-         } catch (error) {
-            console.error("Error fetching data:", error);
-         }
-      };
+   //          setData(products.sort(function (a, b) {
+   //             if (a.name > b.name) {
+   //                return 1;
+   //             }
+   //             if (a.name < b.name) {
+   //                return -1;
+   //             }
+   //             return 0;
+   //          }));
+   //       } catch (error) {
+   //          console.error("Error fetching data:", error);
+   //       }
+   //    };
 
-      fetchData();
-   }, []);
+   //    fetchData();
+   // }, []);
 
    return (
       <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
@@ -236,10 +226,10 @@ export default function Products() {
             >
                Anterior
             </button>
-            <div className="p-2 text-white">{`Página ${page} / ${Math.ceil(data.length / cardsPerPage)}`}</div>
+            <div className="p-2 text-white">{`Página ${page} / ${Math.ceil(products.length / cardsPerPage)}`}</div>
             <button
                onClick={() => handleChangePage(page + 1)}
-               disabled={page === Math.ceil(data.length / cardsPerPage)}
+               disabled={page === Math.ceil(products.length / cardsPerPage)}
                className="bg-gray-700 hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-r"
             >
                Siguiente
@@ -258,10 +248,10 @@ export default function Products() {
             >
                Anterior
             </button>
-            <div className="p-2 text-white">{`Página ${page} / ${Math.ceil(data.length / cardsPerPage)}`}</div>
+            <div className="p-2 text-white">{`Página ${page} / ${Math.ceil(products.length / cardsPerPage)}`}</div>
             <button
                onClick={() => handleChangePage(page + 1)}
-               disabled={page === Math.ceil(data.length / cardsPerPage)}
+               disabled={page === Math.ceil(products.length / cardsPerPage)}
                className="bg-gray-700 hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-r"
             >
                Siguiente

@@ -4,19 +4,7 @@ import axios from "axios"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-
-type Product = {
-   id: string,
-   name: string,
-   cellar: string,
-   region: string,
-   reserve: string,
-   barrel: string,
-   varietal: string[],
-   milliliters: number,
-   organic: boolean,
-   image: string,
-}
+import { Product } from "../../../context/store"
 
 export default function EditData() {
    const [data, setData] = useState<Product[]>([])

@@ -7,19 +7,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-type Product = {
-  id: string,
-  name: string,
-  cellar: string,
-  region: string,
-  reserve: string,
-  barrel: string,
-  varietal: string[],
-  milliliters: number,
-  organic: boolean,
-  image: string,
-}
+import { Product } from '../../../../context/store';
 
 export default function Product(id: any) {
 
@@ -153,7 +141,7 @@ export default function Product(id: any) {
             </h4>
             : null}
           <h4 className="text-white max-sm:w-2/5">
-            Cepa:
+            Varietal:
             <span className="text-xl lg:text-3xl font-bold text-[#AF3935]">
               {' '}
               {product?.varietal.join(', ')}
