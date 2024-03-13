@@ -23,7 +23,7 @@ export default function Nav() {
 
   return (
     <>
-      <div className="flex flex-col fixed top-0 w-full z-20">
+      <div className="flex flex-col top-0 w-full z-20">
         <div className=" bg-[#AF3935] flex flex-row justify-between xl:justify-around items-center p-4">
           <div className="w-16 h-16">
             <Image
@@ -63,7 +63,7 @@ export default function Nav() {
         </div>
       </div>
       {toggle ? (
-        <div className="bg-[#903431]  w-full  xl:hidden">
+        <div className="bg-[#903431]  w-full  xl:hidden ">
           {itemsNav.map((item) => (
             <div
               className="flex flex-row items-center p-1 gap-2 pl-2"

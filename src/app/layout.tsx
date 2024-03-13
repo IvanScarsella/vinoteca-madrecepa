@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <GlobalContextProvider>
           <Nav />
-          <div className="bg-[#1d1d1d] mt-24">{children}</div>
+          <div className="bg-[#1d1d1d] ">{children}</div>
           <WhatsApp />
           <Footer />
         </GlobalContextProvider>
