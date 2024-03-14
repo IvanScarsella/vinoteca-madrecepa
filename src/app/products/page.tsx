@@ -12,7 +12,7 @@ export default function Products() {
    const router = useRouter()
    const [page, setPage] = useState(1);
 
-   const strainFilters = ['Cepa 1', 'Cepa 2', 'Cepa 3'];
+   const strainFilters = ['Tinto', 'Blanco', 'Rosado', 'Espumante'];
 
    const cellarFilters = ['Cellar 1', 'Cellar 2', 'Cellar 3'];
 
@@ -22,11 +22,21 @@ export default function Products() {
 
    const productsOrder = ['A-Z', 'Z-A'];
 
-   // const allCards = Array.from({ length: 18 }, (_, i) => `Card ${i + 1}`); // Simulación de datos de tarjetas
+   const {
+      products,
+      setProducts,
+      selectedVarietal,
+      setSelectedVarietal,
+      selectedCellar,
+      setSelectedCellar,
+      selectedReserve,
+      setSelectedReserve,
+      selectedRegion,
+      setSelectedRegion,
+      orderBy,
+      setOrderBy,
+   } = useGlobalContext()
 
-   // const [data, setData] = useState<Product[]>([])
-
-   const { products, setProducts } = useGlobalContext()
    const handleChangePage = (newPage: any) => {
       setPage(newPage);
    };
@@ -35,30 +45,6 @@ export default function Products() {
    const startIndex = (page - 1) * cardsPerPage;
    const endIndex = startIndex + cardsPerPage;
    const displayedCards = products.slice(startIndex, endIndex);
-   console.log(displayedCards)
-
-   // useEffect(() => {
-   //    const fetchData = async () => {
-   //       try {
-   //          const response = await axios.get<Product[]>('/api/products');
-   //          const products = response.data;
-
-   //          setData(products.sort(function (a, b) {
-   //             if (a.name > b.name) {
-   //                return 1;
-   //             }
-   //             if (a.name < b.name) {
-   //                return -1;
-   //             }
-   //             return 0;
-   //          }));
-   //       } catch (error) {
-   //          console.error("Error fetching data:", error);
-   //       }
-   //    };
-
-   //    fetchData();
-   // }, []);
 
    return (
       <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
@@ -95,12 +81,13 @@ export default function Products() {
                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tl from-white to-transparent opacity-20 rounded-t-md" />
 
                      <h4 className="text-4xl text-white font-bold mb-4 bg-black bg-opacity-20">
-                        Cepa
+                        Tipo
                      </h4>
                      {strainFilters.map((strain, index) => (
                         <p
                            key={index}
-                           className="text-xl text-white font-bold bg-black bg-opacity-20"
+                           className=" z-0 text-xl text-white font-bold bg-black bg-opacity-20 cursor-pointer"
+                           onClick={selectedVarietal === selectedVarietal ? () => setSelectedVarietal('') : () => setSelectedVarietal(selectedVarietal)}
                         >
                            {strain}
                         </p>
@@ -108,32 +95,7 @@ export default function Products() {
                   </div>
                </div>
 
-               <div className="relative w-1/2">
-                  <div
-                     className="absolute z-0 top-0 left-0 h-full w-full bg-center bg-no-repeat opacity-60"
-                     style={{
-                        backgroundImage:
-                           'url("https://www.civitatis.com/blog/wp-content/uploads/2016/09/bodega-chianti.jpg")',
-                        backgroundSize: '100% 100%',
-                     }}
-                  />
-                  <div className="relative z-10 flex flex-col items-center h-full border-2 border-gray-400 border-opacity-40 p-4 rounded-md">
-                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-gray-200 to-transparent opacity-20 rounded-md" />
-                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tl from-white to-transparent opacity-20 rounded-t-md" />
-                     {/* Contenido */}
-                     <h4 className="text-4xl text-white font-bold mb-4 bg-black bg-opacity-20">
-                        Bodega
-                     </h4>
-                     {cellarFilters.map((cellar, index) => (
-                        <p
-                           key={index}
-                           className="text-xl text-white font-bold bg-black bg-opacity-20"
-                        >
-                           {cellar}
-                        </p>
-                     ))}
-                  </div>
-               </div>
+
 
                <div className="relative w-1/2">
                   <div
@@ -153,7 +115,8 @@ export default function Products() {
                      {regionFilters.map((region, index) => (
                         <p
                            key={index}
-                           className="text-xl text-white font-bold bg-black bg-opacity-20"
+                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           onClick={selectedRegion === region ? () => setSelectedRegion('') : () => setSelectedRegion(region)}
                         >
                            {region}
                         </p>
@@ -179,14 +142,15 @@ export default function Products() {
                      {reserveFilters.map((reserve, index) => (
                         <p
                            key={index}
-                           className="text-xl text-white font-bold bg-black bg-opacity-20"
+                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           onClick={selectedReserve === reserve ? () => setSelectedReserve('') : () => setSelectedReserve(reserve)}
                         >
                            {reserve}
                         </p>
                      ))}
                   </div>
                </div>
-               <div className="relative w-1/2 max-xl:w-full">
+               <div className="relative w-1/2">
                   <div
                      className="absolute z-0 top-0 left-0 h-full w-full bg-center bg-no-repeat opacity-60"
                      style={{
@@ -201,12 +165,39 @@ export default function Products() {
                      <h4 className="text-4xl text-white font-bold mb-4 bg-black bg-opacity-20">
                         Orden
                      </h4>
-                     {productsOrder.map((reserve, index) => (
+                     {productsOrder.map((order, index) => (
                         <p
                            key={index}
-                           className="text-xl text-white font-bold bg-black bg-opacity-20"
+                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           onClick={orderBy === order ? () => setOrderBy('') : () => setOrderBy(order)}
                         >
-                           {reserve}
+                           {order}
+                        </p>
+                     ))}
+                  </div>
+               </div>
+               <div className="relative w-1/2 max-xl:w-full">
+                  <div
+                     className="absolute z-0 top-0 left-0 h-full w-full bg-center bg-no-repeat opacity-60"
+                     style={{
+                        backgroundImage:
+                           'url("https://www.civitatis.com/blog/wp-content/uploads/2016/09/bodega-chianti.jpg")',
+                        backgroundSize: '100% 100%',
+                     }}
+                  />
+                  <div className="relative z-10 flex flex-col items-center h-full border-2 border-gray-400 border-opacity-40 p-4 rounded-md">
+                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-gray-200 to-transparent opacity-20 rounded-md" />
+                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tl from-white to-transparent opacity-20 rounded-t-md" />
+                     <h4 className="text-4xl text-white font-bold mb-4 bg-black bg-opacity-20">
+                        Bodega
+                     </h4>
+                     {cellarFilters.map((cellar, index) => (
+                        <p
+                           key={index}
+                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           onClick={selectedCellar === cellar ? () => setSelectedCellar('') : () => setSelectedCellar(cellar)}
+                        >
+                           {cellar}
                         </p>
                      ))}
                   </div>

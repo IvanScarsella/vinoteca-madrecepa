@@ -39,7 +39,6 @@ export const GlobalContextProvider = ({ children }: any) => {
    const [selectedReserve, setSelectedReserve] = useState('')
    const [selectedRegion, setSelectedRegion] = useState('')
    const [orderBy, setOrderBy] = useState('')
-
    useEffect(() => {
       const fetchData = async () => {
          const response = await axios.get('/api/products');
@@ -47,6 +46,50 @@ export const GlobalContextProvider = ({ children }: any) => {
       }
       fetchData()
    }, [])
+
+   useEffect(() => {
+      console.log(selectedVarietal, selectedRegion, selectedCellar, selectedReserve, orderBy)
+
+      const filterProducts = () => {
+
+      }
+      filterProducts()
+
+   }, [
+      selectedVarietal,
+      selectedCellar,
+      selectedRegion,
+      selectedReserve,
+      orderBy
+   ])
+
+   useEffect(() => {
+      const changeOrder = async () => {
+         if (orderBy === 'A-Z') {
+            await setProducts(products.sort(function (a: any, b: any) {
+               if (a.name > b.name) {
+                  return 1;
+               }
+               if (a.name < b.name) {
+                  return -1;
+               }
+               return 0;
+            }))
+         }
+         else if (orderBy === 'Z-A') {
+            await setProducts(products.sort(function (a: any, b: any) {
+               if (a.name > b.name) {
+                  return -1;
+               }
+               if (a.name < b.name) {
+                  return 1;
+               }
+               return 0;
+            }))
+         }
+      }
+      changeOrder()
+   }, [orderBy])
 
    return (
       <GlobalContext.Provider value={{
