@@ -12,15 +12,35 @@ export default function Products() {
    const router = useRouter()
    const [page, setPage] = useState(1);
 
-   const strainFilters = ['Tinto', 'Blanco', 'Rosado', 'Espumante'];
+   const strainFilters = [
+      'Tinto',
+      'Blanco',
+      'Rosado',
+      'Espumante'
+   ];
 
-   const cellarFilters = ['Cellar 1', 'Cellar 2', 'Cellar 3'];
+   const cellarFilters = [
+      'Cellar 1',
+      'Cellar 2',
+      'Cellar 3'
+   ];
 
-   const regionFilters = ['Region 1', 'Region 2', 'Region 3'];
+   const regionFilters = [
+      'Mendoza',
+      'San Juan',
+      'Tucumán',
+   ];
 
-   const reserveFilters = ['Reserva 1', 'Reserva 2', 'Reserva 3'];
+   const reserveFilters = [
+      'Crianza',
+      'Reserva',
+      'Gran Reserva'
+   ];
 
-   const productsOrder = ['A-Z', 'Z-A'];
+   const productsOrder = [
+      'A-Z',
+      'Z-A'
+   ];
 
    const {
       products,
@@ -36,6 +56,7 @@ export default function Products() {
       orderBy,
       setOrderBy,
    } = useGlobalContext()
+   console.log(selectedVarietal);
 
    const handleChangePage = (newPage: any) => {
       setPage(newPage);
@@ -86,10 +107,13 @@ export default function Products() {
                      {strainFilters.map((strain, index) => (
                         <p
                            key={index}
-                           className=" z-0 text-xl text-white font-bold bg-black bg-opacity-20 cursor-pointer"
-                           onClick={selectedVarietal === selectedVarietal ? () => setSelectedVarietal('') : () => setSelectedVarietal(selectedVarietal)}
+                           className={`
+                           ${selectedVarietal === strain ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                            z-0 text-xl text-white font-bold  cursor-pointer`
+                           }
+                           onClick={selectedVarietal === strain ? () => setSelectedVarietal('') : () => setSelectedVarietal(strain)}
                         >
-                           {strain}
+                           {selectedVarietal === strain ? strain + ' X' : strain}
                         </p>
                      ))}
                   </div>
@@ -115,10 +139,13 @@ export default function Products() {
                      {regionFilters.map((region, index) => (
                         <p
                            key={index}
-                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           className={`
+                           ${selectedRegion === region ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                            z-0 text-xl text-white font-bold  cursor-pointer`
+                           }
                            onClick={selectedRegion === region ? () => setSelectedRegion('') : () => setSelectedRegion(region)}
                         >
-                           {region}
+                           {selectedRegion === region ? region + ' X' : region}
                         </p>
                      ))}
                   </div>
@@ -142,10 +169,13 @@ export default function Products() {
                      {reserveFilters.map((reserve, index) => (
                         <p
                            key={index}
-                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           className={`
+                           ${selectedReserve === reserve ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                            z-0 text-xl text-white font-bold  cursor-pointer`
+                           }
                            onClick={selectedReserve === reserve ? () => setSelectedReserve('') : () => setSelectedReserve(reserve)}
                         >
-                           {reserve}
+                           {selectedReserve === reserve ? reserve + ' X' : reserve}
                         </p>
                      ))}
                   </div>
@@ -168,10 +198,13 @@ export default function Products() {
                      {productsOrder.map((order, index) => (
                         <p
                            key={index}
-                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           className={`
+                           ${orderBy === order ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                            z-0 text-xl text-white font-bold  cursor-pointer`
+                           }
                            onClick={orderBy === order ? () => setOrderBy('') : () => setOrderBy(order)}
                         >
-                           {order}
+                           {orderBy === order ? order + ' X' : order}
                         </p>
                      ))}
                   </div>
@@ -194,10 +227,13 @@ export default function Products() {
                      {cellarFilters.map((cellar, index) => (
                         <p
                            key={index}
-                           className="cursor-pointer z-0 text-xl text-white font-bold bg-black bg-opacity-20"
+                           className={`
+                           ${selectedCellar === cellar ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                            z-0 text-xl text-white font-bold  cursor-pointer`
+                           }
                            onClick={selectedCellar === cellar ? () => setSelectedCellar('') : () => setSelectedCellar(cellar)}
                         >
-                           {cellar}
+                           {selectedCellar === cellar ? cellar + ' X' : cellar}
                         </p>
                      ))}
                   </div>
