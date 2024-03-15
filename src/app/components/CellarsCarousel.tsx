@@ -8,7 +8,6 @@ import { Product } from '../../../context/store';
 
 interface CellarsCarouselProps {
   cellars: Product[];
-  // Otras propiedades si las hay
 }
 
 const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {

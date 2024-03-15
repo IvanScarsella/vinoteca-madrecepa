@@ -75,6 +75,30 @@ export default function Products() {
       setPage(1)
    }, [products])
 
+   const [cellars, setCellars] = useState<string[]>([])
+
+   useEffect(() => {
+      const getCellars = async () => {
+         try {
+            const uniqueCellars = [];
+
+            for (let i = 0; i < products.length; i++) {
+               const product = products[i];
+
+               const existingCellarIndex = uniqueCellars.findIndex((item: string) => item === product.cellar);
+
+               if (existingCellarIndex === -1) {
+                  uniqueCellars.push(product.cellar);
+               }
+            }
+            setCellars(uniqueCellars.sort((a, b) => a.localeCompare(b)));
+         } catch (error) {
+            console.error('Error al obtener los productos relacionados:', error);
+         }
+      };
+      getCellars()
+   }, [products])
+
    return (
       <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
          {process.env.NEXT_PUBLIC_DEVELOP ?
@@ -232,18 +256,29 @@ export default function Products() {
                      <h4 className="text-4xl text-white font-bold mb-4 bg-black bg-opacity-20">
                         Bodega
                      </h4>
-                     {cellarFilters.map((cellar, index) => (
-                        <p
-                           key={index}
-                           className={`
-                           ${selectedCellar === cellar ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                            z-0 text-xl text-white font-bold  cursor-pointer`
-                           }
-                           onClick={selectedCellar === cellar ? () => setSelectedCellar('') : () => setSelectedCellar(cellar)}
-                        >
-                           {selectedCellar === cellar ? cellar + ' X' : cellar}
-                        </p>
-                     ))}
+                     <div
+                        className='max-h-[100px] min-h-[40px] overflow-y-auto z-10'
+                        style={{
+                           // backgroundColor: '#1d1d1d',
+                           scrollbarWidth: 'thin',
+                           scrollbarColor: '#af3935 #1d1d1d',
+                           overflowY: 'auto',
+                           maxHeight: '100px'
+                        }}
+                     >
+                        {cellars.map((cellar, index) => (
+                           <p
+                              key={index}
+                              className={`
+                           ${selectedCellar === cellar ? 'scale-110 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                           z-0 text-xl text-white font-bold  cursor-pointer px-2 max-h-[200px]`
+                              }
+                              onClick={selectedCellar === cellar ? () => setSelectedCellar('') : () => setSelectedCellar(cellar)}
+                           >
+                              {selectedCellar === cellar ? cellar + ' X' : cellar}
+                           </p>
+                        ))}
+                     </div>
                   </div>
                </div>
             </div>
