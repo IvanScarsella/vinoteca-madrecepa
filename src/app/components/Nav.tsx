@@ -6,21 +6,26 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import { IoIosWine } from 'react-icons/io';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { useGlobalContext } from '../../../context/store';
+import Link from 'next/link';
 
 export default function Nav() {
   const router = useRouter();
+  const pathname = usePathname()
 
   const [toggle, setToggle] = useState<boolean>(false);
 
   const itemsNav = [
-    { title: 'Tintos' },
-    { title: 'Blancos' },
-    { title: 'Rosados' },
-    { title: 'Espumantes' },
-    { title: 'Aperitivos' },
+    { title: 'Tinto' },
+    { title: 'Blanco' },
+    { title: 'Rosado' },
+    { title: 'Espumante' },
+    // { title: 'Aperitivos' },
   ];
 
+  const { setSelectedVarietal } = useGlobalContext()
+  console.log(usePathname())
   return (
     <>
       <div className="flex flex-col top-0 w-full z-20">
@@ -47,35 +52,43 @@ export default function Nav() {
               onClick={() => setToggle((toggle) => !toggle)}
             />
           </div>
-          {/* <div className="flex flex-row"> */}
           {itemsNav.map((item) => (
-            <a href="/products" className="max-xl:hidden" key={item.title}>
+            <Link href="/products" key={item.title}>
               <div
                 className="flex flex-row items-center p-1 gap-2 pl-2 max-xl:hidden"
-                onClick={() => router.push('/products')}
+                onClick={() => {
+                  setSelectedVarietal(item.title);
+                  pathname !== '/products' ? router.push('/products') : null;
+                }}
+                key={item.title}
               >
                 <IoIosWine />
-                <p className="text-2xl text-white">{item.title}</p>
+                <p className="text-2xl text-white">{item.title + 's'}</p>
               </div>
-            </a>
+            </Link>
           ))}
-          {/* </div> */}
         </div>
       </div>
       {toggle ? (
         <div className="bg-[#903431]  w-full  xl:hidden ">
           {itemsNav.map((item) => (
-            <div
-              className="flex flex-row items-center p-1 gap-2 pl-2"
-              onClick={() => router.push('/products')}
-              key={item.title}
-            >
-              <IoIosWine />
-              <p className="text-2xl cursor-pointer">{item.title}</p>
-            </div>
+            <Link href="/products" key={item.title}>
+              <div
+                className="flex flex-row items-center p-1 gap-2 pl-2"
+                onClick={() => {
+                  setSelectedVarietal(item.title);
+                  pathname !== '/products' ? router.push('/products') : null;
+                }}
+                key={item.title}
+              >
+                <IoIosWine />
+                <p className="text-2xl cursor-pointer">{item.title + 's'}</p>
+              </div>
+            </Link>
           ))}
-        </div>
-      ) : null}
+        </div >
+      ) : null
+      }
     </>
   );
 }
