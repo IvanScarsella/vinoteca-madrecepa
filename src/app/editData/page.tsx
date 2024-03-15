@@ -17,7 +17,7 @@ export default function EditData() {
    const [file, setFile] = useState(null);
    const [filename, setFilename] = useState('');
    const [imageURLs, setImageURLs] = useState<string[]>([]);
-   // console.log(selectedVarietals)
+
    const router = useRouter()
 
    const handleChangeImage = async (event: any) => {
@@ -51,8 +51,6 @@ export default function EditData() {
          }
       }
    };
-
-   // console.log(data)
 
    const varietals = [
       'Ancelotta',
@@ -160,16 +158,22 @@ export default function EditData() {
 
    const handleUpdateProduct = async (updatedProduct: Product) => {
       try {
+         const selectedProduct = data.find(product => product.id === updatedProduct.id);
+         console.log(selectedProduct)
          const updateProduct = {
             ...updatedProduct,
             id: product?.id,
-            varietal: selectedVarietals.length ? selectedVarietals : product?.varietal,
-            // varietal: selectedVarietals.map(option => option.value),
-            image: imageURL ? imageURL : product?.image
+            name: selectedProduct?.name,
+            cellar: selectedProduct?.cellar,
+            reserve: selectedProduct?.reserve,
+            barrel: selectedProduct?.barrel,
+            milliliters: selectedProduct?.milliliters,
+            organic: selectedProduct?.organic,
+            varietal: selectedVarietals.length ? selectedVarietals : selectedProduct?.varietal,
+            image: imageURL ? imageURL : selectedProduct?.image
          };
          await axios.put(`/api/products`, updateProduct);
          console.log("Producto actualizado:", updateProduct);
-         // setProduct()
          setSelectedVarietals([])
          setIsOrganic(false)
          window.location.reload()
@@ -224,7 +228,8 @@ export default function EditData() {
                               className="text-black"
                               type="text"
                               placeholder={product.name}
-                              value={editingProductId === product.id ? product.name : ''}
+                              // value={editingProductId === product.id ? product.name : ''}
+                              // onChange={(e) => console.log(e.target.value)}
                               onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, name: e.target.value } : p))}
                               onFocus={() => setEditingProductId(product.id)}
                               onBlur={() => setEditingProductId(null)}
@@ -236,7 +241,7 @@ export default function EditData() {
                               className="text-black"
                               type="text"
                               placeholder={product.cellar}
-                              value={editingProductId === product.id ? product.cellar : ''}
+                              // value={editingProductId === product.id ? product.cellar : ''}
                               onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, cellar: e.target.value } : p))}
                               onFocus={() => setEditingProductId(product.id)}
                               onBlur={() => setEditingProductId(null)}
@@ -248,7 +253,7 @@ export default function EditData() {
                               className="text-black"
                               type="text"
                               placeholder={product.region}
-                              value={editingProductId === product.id ? product.region : ''}
+                              // value={editingProductId === product.id ? product.region : ''}
                               onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, region: e.target.value } : p))}
                               onFocus={() => setEditingProductId(product.id)}
                               onBlur={() => setEditingProductId(null)}
@@ -260,7 +265,7 @@ export default function EditData() {
                               className="text-black"
                               type="text"
                               placeholder={product.reserve}
-                              value={editingProductId === product.id ? product.reserve : ''}
+                              // value={editingProductId === product.id ? product.reserve : ''}
                               onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, reserve: e.target.value } : p))}
                               onFocus={() => setEditingProductId(product.id)}
                               onBlur={() => setEditingProductId(null)}
@@ -272,7 +277,7 @@ export default function EditData() {
                               className="text-black"
                               type="text"
                               placeholder={product.barrel}
-                              value={editingProductId === product.id ? product.barrel : ''}
+                              // value={editingProductId === product.id ? product.barrel : ''}
                               onChange={(e) => setData(prevData => prevData.map(p => p.id === product.id ? { ...p, barrel: e.target.value } : p))}
                               onFocus={() => setEditingProductId(product.id)}
                               onBlur={() => setEditingProductId(null)}
@@ -304,7 +309,7 @@ export default function EditData() {
                            type="text"
                            pattern="[0-9]*"
                            placeholder={product.milliliters.toString()}
-                           value={editingProductId === product.id ? product.milliliters : ''}
+                           // value={editingProductId === product.id ? product.milliliters : ''}
                            onChange={(e) => {
                               const value = e.target.value.replace(/\D/, ''); // Solo permite números
                               setData(prevData => prevData.map(p => p.id === product.id ? { ...p, milliliters: Number(value) } : p))

@@ -4,19 +4,22 @@ import { createContext, useContext, useState, useEffect } from "react"
 import axios from "axios"
 import { Dispatch, SetStateAction } from "react"
 
+
 export const GlobalContext = createContext({
-   products: [],
-   setProducts: Dispatch<SetStateAction<Product[]>>,
+   products: [] as Product[],
+   setProducts: {} as Dispatch<SetStateAction<Product[]>>,
    selectedVarietal: '',
-   setSelectedVarietal: Dispatch<SetStateAction<string>>,
+   setSelectedVarietal: {} as Dispatch<SetStateAction<string>>,
    selectedCellar: '',
-   setSelectedCellar: Dispatch<SetStateAction<string>>,
+   setSelectedCellar: {} as Dispatch<SetStateAction<string>>,
    selectedReserve: '',
-   setSelectedReserve: Dispatch<SetStateAction<string>>,
+   setSelectedReserve: {} as Dispatch<SetStateAction<string>>,
    selectedRegion: '',
-   setSelectedRegion: Dispatch<SetStateAction<string>>,
+   setSelectedRegion: {} as Dispatch<SetStateAction<string>>,
    orderBy: '',
-   setOrderBy: Dispatch<SetStateAction<string>>,
+   setOrderBy: {} as Dispatch<SetStateAction<string>>,
+   searchString: '',
+   setSearchString: {} as Dispatch<SetStateAction<string>>,
 })
 
 export type Product = {
@@ -33,13 +36,14 @@ export type Product = {
 }
 
 export const GlobalContextProvider = ({ children }: any) => {
-   const [totalProducts, setTotalProducts] = useState([])
-   const [products, setProducts] = useState([])
+   const [totalProducts, setTotalProducts] = useState<Product[]>([])
+   const [products, setProducts] = useState<Product[]>([])
    const [selectedVarietal, setSelectedVarietal] = useState('')
    const [selectedCellar, setSelectedCellar] = useState('')
    const [selectedReserve, setSelectedReserve] = useState('')
    const [selectedRegion, setSelectedRegion] = useState('')
    const [orderBy, setOrderBy] = useState('')
+   const [searchString, setSearchString] = useState('')
 
    useEffect(() => {
       const fetchData = async () => {
@@ -144,6 +148,33 @@ export const GlobalContextProvider = ({ children }: any) => {
       changeOrder();
    }, [orderBy]);
 
+   useEffect(() => {
+      setSelectedCellar('')
+      setSelectedRegion('')
+      setSelectedReserve('')
+      setSelectedVarietal('')
+      setOrderBy('')
+      const search = () => {
+         const searchedProducts: Product[] = []
+         for (let i = 0; i < totalProducts.length; i++) {
+            if (
+               JSON.stringify(totalProducts[i].name.toLowerCase()).includes(searchString.toLowerCase()) ||
+               JSON.stringify(totalProducts[i].cellar.toLowerCase()).includes(searchString.toLowerCase())
+
+            )
+               searchedProducts.push(totalProducts[i])
+         }
+         setProducts(searchedProducts)
+      }
+      search()
+      console.log(searchString)
+   }, [searchString])
+
+   // useEffect(() => {
+   //    setProducts(totalProducts)
+
+   // }, [searchString === ''])
+
    return (
       <GlobalContext.Provider value={{
          products,
@@ -158,6 +189,8 @@ export const GlobalContextProvider = ({ children }: any) => {
          setSelectedRegion,
          orderBy,
          setOrderBy,
+         searchString,
+         setSearchString
       }}>
          {children}
       </GlobalContext.Provider>

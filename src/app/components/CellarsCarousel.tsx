@@ -6,9 +6,14 @@ import Image from 'next/image';
 import imagen1 from '../../../public/bodega.png';
 import { Product } from '../../../context/store';
 
-function CellarsCarousel(cellars: Product) {
+interface CellarsCarouselProps {
+  cellars: Product[];
+  // Otras propiedades si las hay
+}
 
-  const data = cellars.cellars.slice(0, 15);
+const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
+
+  const data = cellars.slice(0, 15);
 
   const images = [
     { src: imagen1, alt: 'imagen' },
@@ -29,7 +34,7 @@ function CellarsCarousel(cellars: Product) {
   return (
     <section className="max-container flex w-full items-center justify-between text-justify max-xl:flex-col xl:p-4">
       <div className="max-container flex w-full items-center justify-between gap-10 text-justify max-xl:flex-col-reverse">
-        <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-2/3">
+        <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-2/3 ">
           {data.map((cellar, index) => (
             <div key={index} className="">
               <div className="flex w-full flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-gray-900 bg-opacity-100 border-2 border-gray-700 border-opacity-80 p-4">
@@ -41,7 +46,7 @@ function CellarsCarousel(cellars: Product) {
                   alt={cellar.name}
                   width={400}
                   height={300}
-                  className="max-h-full rounded-2xl hover:shadow-3xl shadow-white"
+                  className="rounded-2xl hover:shadow-3xl shadow-white"
                 />
               </div>
             </div>

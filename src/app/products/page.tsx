@@ -8,9 +8,28 @@ import axios from 'axios';
 import { Product, useGlobalContext } from '../../../context/store';
 
 export default function Products() {
+   const {
+      products,
+      setProducts,
+      selectedVarietal,
+      setSelectedVarietal,
+      selectedCellar,
+      setSelectedCellar,
+      selectedReserve,
+      setSelectedReserve,
+      selectedRegion,
+      setSelectedRegion,
+      orderBy,
+      setOrderBy,
+      searchString,
+      setSearchString
+   } = useGlobalContext()
 
    const router = useRouter()
    const [page, setPage] = useState(1);
+   // if (page > products.length / 12) {
+   //    setPage(1)
+   // }
 
    const strainFilters = [
       'Tinto',
@@ -42,21 +61,6 @@ export default function Products() {
       'Z-A'
    ];
 
-   const {
-      products,
-      setProducts,
-      selectedVarietal,
-      setSelectedVarietal,
-      selectedCellar,
-      setSelectedCellar,
-      selectedReserve,
-      setSelectedReserve,
-      selectedRegion,
-      setSelectedRegion,
-      orderBy,
-      setOrderBy,
-   } = useGlobalContext()
-   console.log(selectedVarietal);
 
    const handleChangePage = (newPage: any) => {
       setPage(newPage);
@@ -66,6 +70,10 @@ export default function Products() {
    const startIndex = (page - 1) * cardsPerPage;
    const endIndex = startIndex + cardsPerPage;
    const displayedCards = products.slice(startIndex, endIndex);
+
+   useEffect(() => {
+      setPage(1)
+   }, [products])
 
    return (
       <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
@@ -108,7 +116,7 @@ export default function Products() {
                         <p
                            key={index}
                            className={`
-                           ${selectedVarietal === strain ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                           ${selectedVarietal === strain ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
                             z-0 text-xl text-white font-bold  cursor-pointer`
                            }
                            onClick={selectedVarietal === strain ? () => setSelectedVarietal('') : () => setSelectedVarietal(strain)}
@@ -140,7 +148,7 @@ export default function Products() {
                         <p
                            key={index}
                            className={`
-                           ${selectedRegion === region ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                           ${selectedRegion === region ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
                             z-0 text-xl text-white font-bold  cursor-pointer`
                            }
                            onClick={selectedRegion === region ? () => setSelectedRegion('') : () => setSelectedRegion(region)}
@@ -170,7 +178,7 @@ export default function Products() {
                         <p
                            key={index}
                            className={`
-                           ${selectedReserve === reserve ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                           ${selectedReserve === reserve ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
                             z-0 text-xl text-white font-bold  cursor-pointer`
                            }
                            onClick={selectedReserve === reserve ? () => setSelectedReserve('') : () => setSelectedReserve(reserve)}
@@ -199,7 +207,7 @@ export default function Products() {
                         <p
                            key={index}
                            className={`
-                           ${orderBy === order ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                           ${orderBy === order ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
                             z-0 text-xl text-white font-bold  cursor-pointer`
                            }
                            onClick={orderBy === order ? () => setOrderBy('') : () => setOrderBy(order)}
@@ -228,7 +236,7 @@ export default function Products() {
                         <p
                            key={index}
                            className={`
-                           ${selectedCellar === cellar ? 'scale-150 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
+                           ${selectedCellar === cellar ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
                             z-0 text-xl text-white font-bold  cursor-pointer`
                            }
                            onClick={selectedCellar === cellar ? () => setSelectedCellar('') : () => setSelectedCellar(cellar)}
@@ -243,7 +251,13 @@ export default function Products() {
          </div>
          <div className=" w-full h-6 text-center flex flex-row mb-4 p-1 xl:w-2/5 self-center">
             <MdOutlineSearch className="bg-white h-8 w-10 flex flex-row items-center" />
-            <input type="text" placeholder="Buscar" className="w-full h-8" />
+            <input
+               type="text"
+               placeholder="Buscar"
+               className="w-full h-8"
+               onChange={(e) => setSearchString(e.target.value)}
+            // value={searchString ? searchString : ''}
+            />
          </div>
          <div className="flex justify-center mt-4">
             <button
