@@ -82,7 +82,7 @@ export default function Card(data: any) {
     <div
       className={`relative
       bg-gradient-to-br ${getGradient(varietal)} bg-opacity-30
-       text-white border border-gray-700 shadow-lg rounded-xl overflow-hidden flex flex-col items-center hover:shadow-xl cursor-pointer xl:w-1/4 sm:w-5/12 p-2  hover:scale-110 hover:shadow-black`}
+       text-white border border-gray-700 shadow-lg rounded-xl overflow-hidden flex flex-col items-center hover:shadow-xl cursor-pointer max-xl:mx-auto max-xl:w-[300px] xl:w-1/4 sm:w-5/12 p-2  hover:scale-110 hover:shadow-black`}
       onClick={() => router.push(`/products/${id}`)}
     >
       <div className="w-[300px] max-sm:w-[400px] flex flex-row justify-center p-2">

@@ -85,7 +85,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col xl:flex-row">
+      <div className="flex flex-col xl:gap-8">
         <h2 className="text-xl xl:text-3xl  text-white mx-auto">
           Visitá nuestro local
         </h2>
