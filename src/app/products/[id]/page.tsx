@@ -7,13 +7,13 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Product } from '../../../../context/store';
+import { Wine } from '../../../../context/store';
 
 export default function Product(id: any) {
 
 
-  const [product, setProduct] = useState<Product>()
-  const [relatedProducts, setRelatedProducts] = useState<Product[]>()
+  const [product, setProduct] = useState<Wine>()
+  const [relatedProducts, setRelatedProducts] = useState<Wine[]>()
 
   function getGradient(varietal: string[]) {
     let tinto = false

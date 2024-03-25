@@ -3,18 +3,23 @@
 import Image from 'next/image';
 import logo from '../../../public/logo.jpg';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { useGlobalContext } from '../../../context/store';
 
 export default function Nav() {
   const router = useRouter();
+  const pathname = usePathname()
 
   const itemsNav = [
     { title: 'Tintos' },
     { title: 'Blancos' },
     { title: 'Rosados' },
     { title: 'Espumantes' },
-    { title: 'Aperitivos' },
+    { title: 'Otras bebidas' },
+    { title: 'Accesorios' },
   ];
+
+  const { setSelectedVarietal } = useGlobalContext()
 
   return (
     <div className="bg-[#AF3935] h-full">
@@ -25,7 +30,7 @@ export default function Nav() {
             alt="logo"
             width={144}
             height={144}
-            // className='h-20'
+          // className='h-20'
           />
         </div>
         <div className="w-1/3 p-4">
@@ -38,7 +43,10 @@ export default function Nav() {
                 {/* <IoIosWine /> */}
                 <p
                   className="text-base xl:text-2xl text-white cursor-pointer"
-                  onClick={() => router.push('/products')}
+                  onClick={() => {
+                    setSelectedVarietal(item.title);
+                    pathname !== '/products' ? router.push('/products') : null;
+                  }}
                 >
                   {item.title}
                 </p>

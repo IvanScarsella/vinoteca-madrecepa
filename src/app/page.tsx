@@ -12,23 +12,22 @@ import facebookLogo from '../../public/facebook_logo.png';
 import instagramLogo from '../../public/instagram_logo.png';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Product, useGlobalContext } from '../../context/store';
+import { Wine, useGlobalContext } from '../../context/store';
 
 export default function Home() {
 
-  const [cellars, setCellars] = useState<Product[]>([])
+  const [cellars, setCellars] = useState<Wine[]>([])
 
   const { products, setProducts } = useGlobalContext();
   useEffect(() => {
     const getRelated = async () => {
       try {
-        const uniqueCellars: Product[] = [];
+        const uniqueCellars: Wine[] = [];
 
         for (let i = 0; i < products.length; i++) {
           const product = products[i];
 
-          const existingCellarIndex = uniqueCellars.findIndex((item: Product) => item.cellar === product.cellar);
+          const existingCellarIndex = uniqueCellars.findIndex((item: Wine) => item.cellar === product.cellar);
 
           if (existingCellarIndex === -1) {
             uniqueCellars.push(product);

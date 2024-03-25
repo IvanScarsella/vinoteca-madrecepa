@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import { MdOutlineSearch } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { Product, useGlobalContext } from '../../../context/store';
+import { useGlobalContext } from '../../../context/store';
 
 export default function Products() {
    const {
@@ -32,10 +32,10 @@ export default function Products() {
    // }
 
    const strainFilters = [
-      'Tinto',
-      'Blanco',
-      'Rosado',
-      'Espumante'
+      'Tintos',
+      'Blancos',
+      'Rosados',
+      'Espumantes'
    ];
 
    const cellarFilters = [
@@ -46,8 +46,10 @@ export default function Products() {
 
    const regionFilters = [
       'Mendoza',
+      'Salta',
       'San Juan',
-      'Tucumán',
+      'Jujuy',
+      // 'Tucumán',
    ];
 
    const reserveFilters = [

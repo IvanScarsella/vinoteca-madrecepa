@@ -4,12 +4,12 @@ import axios from "axios"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Product } from "../../../context/store"
+import { Wine } from "../../../context/store"
 
 export default function EditData() {
-   const [data, setData] = useState<Product[]>([])
+   const [data, setData] = useState<Wine[]>([])
    const [editingProductId, setEditingProductId] = useState<string | null>(null)
-   const [product, setProduct] = useState<Product>()
+   const [product, setProduct] = useState<Wine>()
    const [selectedVarietals, setSelectedVarietals] = useState<string[]>([]);
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    const [isOrganic, setIsOrganic] = useState(false)
@@ -130,7 +130,7 @@ export default function EditData() {
    useEffect(() => {
       const fetchData = async () => {
          try {
-            const response = await axios.get<Product[]>('/api/products');
+            const response = await axios.get<Wine[]>('/api/products');
             const products = response.data;
 
             setData(products.sort(function (a, b) {
@@ -156,7 +156,7 @@ export default function EditData() {
       fetchData();
    }, []);
 
-   const handleUpdateProduct = async (updatedProduct: Product) => {
+   const handleUpdateProduct = async (updatedProduct: Wine) => {
       try {
          const selectedProduct = data.find(product => product.id === updatedProduct.id);
          console.log(selectedProduct)

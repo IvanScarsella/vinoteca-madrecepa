@@ -17,15 +17,16 @@ export default function Nav() {
   const [toggle, setToggle] = useState<boolean>(false);
 
   const itemsNav = [
-    { title: 'Tinto' },
-    { title: 'Blanco' },
-    { title: 'Rosado' },
-    { title: 'Espumante' },
-    // { title: 'Aperitivos' },
+    { title: 'Tintos' },
+    { title: 'Blancos' },
+    { title: 'Rosados' },
+    { title: 'Espumantes' },
+    { title: 'Otras bebidas' },
+    { title: 'Accesorios' },
   ];
 
   const { setSelectedVarietal } = useGlobalContext()
-  console.log(usePathname())
+
   return (
     <>
       <div className="flex flex-col top-0 w-full z-20">
@@ -63,7 +64,7 @@ export default function Nav() {
                 key={item.title}
               >
                 <IoIosWine />
-                <p className="text-2xl text-white">{item.title + 's'}</p>
+                <p className="text-2xl text-white">{item.title}</p>
               </div>
             </Link>
           ))}
@@ -82,7 +83,7 @@ export default function Nav() {
                 key={item.title}
               >
                 <IoIosWine />
-                <p className="text-2xl cursor-pointer">{item.title + 's'}</p>
+                <p className="text-2xl cursor-pointer">{item.title}</p>
               </div>
             </Link>
           ))}

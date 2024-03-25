@@ -4,10 +4,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import imagen1 from '../../../public/bodega.png';
-import { Product } from '../../../context/store';
+import { Wine } from '../../../context/store';
 
 interface CellarsCarouselProps {
-  cellars: Product[];
+  cellars: Wine[];
 }
 
 const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {

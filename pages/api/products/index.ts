@@ -6,8 +6,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    if (req.method === 'GET') {
       try {
          const wines = db.wines
+         const sparklings = db.sparklings
+         const otherDrinks = db.otherDrinks
+         const extras = db.extras
 
-         res.status(200).json(wines)
+         res.status(200).json({ wines, sparklings, otherDrinks, extras })
       } catch (error) {
          console.error('Error al obtener los datos:', error)
          res.status(500).json({ message: 'Error al obtener los datos' })

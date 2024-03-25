@@ -13,12 +13,16 @@ export default function Card(data: any) {
     region,
     reserve,
     varietal,
+    type,
+    description,
     id
   } = data.data
 
   const router = useRouter();
 
   function getGradient(varietal: string[]) {
+    if (!varietal) return
+
     let tinto = false
     let blanco = false
     let rosado = false
@@ -98,9 +102,13 @@ export default function Card(data: any) {
       </div>
       <div className="flex flex-col justify-around items-center p-2 xl:p-6 max-xl:justify-evenly">
         <h3 className="text-lg xl:text-4xl font-bold">{name}</h3>
-        <div className="bg-[#AF3935] rounded-full w-2 h-2 xl:w-3 xl:h-3 m-4" />
+        {type || description || varietal ?
+          <div className="bg-[#AF3935] rounded-full w-2 h-2 xl:w-3 xl:h-3 m-4" />
+          : null}
         <p className="text-base xl:text-xl font-semibold ">{cellar}</p>
-        <p className="text-xs xl:text-base font-semibold ">{varietal.join(', ')}</p>
+        {type || description || varietal ?
+          <p className="text-xs xl:text-base font-semibold ">{type ? type : description ? description : varietal.join(', ')}</p>
+          : null}
       </div>
     </div>
   );
