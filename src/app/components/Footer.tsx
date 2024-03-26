@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import logo from '../../../public/logo.jpg';
+import logo from '../../../public/logo.png';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useGlobalContext } from '../../../context/store';
@@ -30,7 +30,7 @@ export default function Nav() {
             alt="logo"
             width={144}
             height={144}
-          // className='h-20'
+            className='bg-white'
           />
         </div>
         <div className="w-1/3 p-4">
@@ -54,13 +54,14 @@ export default function Nav() {
             ))}
           </div>
         </div>
-        <div className="w-1/3 p-4 text-base flex flex-col justify-center gap-2 xl:items-center">
-          <p>Teléfono:</p>
-          <p>123456789</p>
-          <Link href="mailto:mail@mail.com" target="_blank">
-            <p>mail@mail.com</p>
-          </Link>
-          <p>Calle 123</p>
+        <div className="w-1/3 p-4 text-base max-sm:text-xs flex flex-col justify-center gap-2 xl:items-center">
+          <p>Teléfonos:</p>
+          <p>221-4942853</p>
+          <p>4723895</p>
+          {/* <Link href="mailto:vinoteca.madrecepa@gmail.com" target="_blank">
+            <p>vinoteca.madrecepa@gmail.com</p>
+          </Link> */}
+          <p>Calle 472 esquina 13b</p>
           <p>City Bell</p>
         </div>
       </div>

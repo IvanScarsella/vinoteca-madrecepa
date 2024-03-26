@@ -4,6 +4,7 @@ import PromoCarousel from '@/app/components/PromoCarousel';
 import CellarsCarousel from './components/CellarsCarousel';
 import Image from 'next/image';
 import imagen from '../../public/imagen.jpg';
+import logo from '../../public/logo.png'
 import imagenLocal1 from '../../public/imagen_local_1.jpg';
 import imagenLocal2 from '../../public/imagen_local_2.jpg';
 import imagenLocal3 from '../../public/imagen_local_3.jpg';
@@ -46,7 +47,14 @@ export default function Home() {
       <h1 className="text-white text-sm mx-auto mt-5 xl:text-4xl ">
         Los mejores vinos de la ciudad están en
       </h1>
-      <p className="text-6xl text-center text-red-600 xl:text-9xl">MAD</p>
+      {/* <p className="text-6xl text-center text-red-600 xl:text-9xl">MAD</p> */}
+      <Image
+        src={logo}
+        alt='logo'
+        width={200}
+        height={200}
+        className='self-center'
+      />
       <PromoCarousel />
       <h1 className=" text-center text-4xl text-white xl:text-6xl">
         Nuestras Bodegas
@@ -89,7 +97,7 @@ export default function Home() {
           Visitá nuestro local
         </h2>
         <h2 className="text-xl xl:text-3xl  text-white mx-auto">
-          Calle 123, City Bell
+          Calle 472 esquina 13b, City Bell
         </h2>
       </div>
       <div className="flex flex-row flex-wrap justify-around xl:p-10 mx-6">

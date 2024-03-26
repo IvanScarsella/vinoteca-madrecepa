@@ -1,7 +1,7 @@
 'use client';
 
 import { IoMenu } from 'react-icons/io5';
-import logo from '../../../public/logo.jpg';
+import logo from '../../../public/logo.png';
 import Image from 'next/image';
 import { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
@@ -31,19 +31,19 @@ export default function Nav() {
     <>
       <div className="flex flex-col top-0 w-full z-20">
         <div className=" bg-[#AF3935] flex flex-row justify-between xl:justify-around items-center p-4">
-          <div className="w-16 h-16">
+          <div className="ml-2 w-16 h-16">
             <Image
               src={logo}
               alt="logo"
               width={48}
               height={48}
-              className="w-full h-full hover:cursor-pointer"
+              className=" w-full h-full hover:cursor-pointer bg-white"
               onClick={() => router.push('/')}
             />
           </div>
-          <div className="w-16 h-16 xl:hidden" hidden={toggle}>
+          <div className=" w-16 h-16 xl:hidden" hidden={toggle}>
             <IoMenu
-              className="w-full h-full"
+              className=" w-full h-full hover:cursor-pointer"
               onClick={() => setToggle((toggle) => !toggle)}
             />
           </div>
@@ -54,7 +54,7 @@ export default function Nav() {
             />
           </div>
           {itemsNav.map((item) => (
-            <Link href="/products" key={item.title}>
+            <Link href="/products" key={item.title} className='max-xl:hidden'>
               <div
                 className="flex flex-row items-center p-1 gap-2 pl-2 max-xl:hidden"
                 onClick={() => {

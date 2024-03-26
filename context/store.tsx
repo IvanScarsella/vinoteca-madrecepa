@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction } from "react"
 export const GlobalContext = createContext({
    products: [] as Wine[],
    setProducts: {} as Dispatch<SetStateAction<Wine[]>>,
+   totalProducts: [] as any[],
    selectedVarietal: '',
    setSelectedVarietal: {} as Dispatch<SetStateAction<string>>,
    selectedCellar: '',
@@ -229,13 +230,14 @@ export const GlobalContextProvider = ({ children }: any) => {
          setProducts(searchedProducts)
       }
       search()
-      console.log(searchString)
+
    }, [searchString])
 
    return (
       <GlobalContext.Provider value={{
          products,
          setProducts,
+         totalProducts,
          selectedVarietal,
          setSelectedVarietal,
          selectedCellar,
