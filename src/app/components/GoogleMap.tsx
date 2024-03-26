@@ -38,8 +38,8 @@ function Map() {
          mapContainerStyle={containerStyle}
          // className='w-96 h-96'
          center={center}
-         zoom={10}
-         onLoad={onLoad}
+         zoom={16}
+         // onLoad={onLoad}
          onUnmount={onUnmount}
       >
          <Marker position={center} />
