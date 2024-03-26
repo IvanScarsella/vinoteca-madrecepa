@@ -1,7 +1,7 @@
 'use client';
 
 import { IoMenu } from 'react-icons/io5';
-import logo from '../../../public/logo.png';
+import logo from '../../../public/';
 import Image from 'next/image';
 import { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
