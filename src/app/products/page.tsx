@@ -190,7 +190,7 @@ export default function Products() {
                      className="absolute z-0 top-0 left-0 h-full w-full bg-center bg-no-repeat opacity-60"
                      style={{
                         backgroundImage:
-                           'url("https://c8.alamy.com/compes/2af83mx/francia-borgona-2019-06-19-tienda-joseph-drouhin-en-bodega-bastidor-de-madera-con-el-famoso-vino-tinto-pinot-noir-concepto-frances-la-produccion-de-vinos-organicos-degust-2af83mx.jpg")',
+                           'url("https://www.cronista.com/files/image/448/448993/621529a9b0eb8.jpg")',
                         backgroundSize: '100% 100%',
                      }}
                   />
@@ -314,9 +314,13 @@ export default function Products() {
             </button>
          </div>
          <div className="flex flex-col gap-4 flex-wrap sm:flex-row justify-evenly">
-            {displayedCards.map((card, index) => (
+            {displayedCards.length ? displayedCards.map((card, index) => (
                <Card key={index} data={card} />
-            ))}
+            )) : <h1
+               className='text-white'
+            >
+               Ningún producto coincide con los filtros de búsqueda: {selectedVarietal} {selectedRegion} {selectedReserve} {selectedCellar}. Pruebe modificándolos.
+            </h1>}
          </div>
          <div className="flex justify-center mt-4">
             <button

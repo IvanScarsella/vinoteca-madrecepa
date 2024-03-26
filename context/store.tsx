@@ -4,7 +4,6 @@ import { createContext, useContext, useState, useEffect } from "react"
 import axios from "axios"
 import { Dispatch, SetStateAction } from "react"
 
-
 export const GlobalContext = createContext({
    products: [] as Wine[],
    setProducts: {} as Dispatch<SetStateAction<Wine[]>>,
@@ -95,7 +94,6 @@ export const GlobalContextProvider = ({ children }: any) => {
          let filteredProducts = [...totalProducts];
 
          if (selectedRegion) {
-            console.log(selectedRegion)
             filteredProducts = filteredProducts.filter((product) => {
                if (product.region) {
                   return product.region.includes(selectedRegion)
@@ -197,6 +195,10 @@ export const GlobalContextProvider = ({ children }: any) => {
       filterProducts();
    }, [selectedVarietal, selectedCellar, selectedRegion, selectedReserve, orderBy]);
 
+   useEffect(() => {
+      setSelectedCellar('')
+   }, [selectedRegion, selectedReserve, selectedVarietal])
+
 
    useEffect(() => {
       const changeOrder = () => {
@@ -212,26 +214,37 @@ export const GlobalContextProvider = ({ children }: any) => {
    }, [orderBy]);
 
    useEffect(() => {
-      setSelectedCellar('')
-      setSelectedRegion('')
-      setSelectedReserve('')
-      setSelectedVarietal('')
-      setOrderBy('')
-      const search = () => {
-         const searchedProducts: Wine[] = []
-         for (let i = 0; i < totalProducts.length; i++) {
-            if (JSON.stringify(totalProducts[i].name.toLowerCase()).includes(searchString.toLowerCase()))
-               searchedProducts.push(totalProducts[i])
-            else if (totalProducts[i].cellar && JSON.stringify(totalProducts[i].cellar.toLowerCase()).includes(searchString.toLowerCase()))
-               searchedProducts.push(totalProducts[i])
-            else if (totalProducts[i].varietal && JSON.stringify(totalProducts[i].varietal.join().toLowerCase()).includes(searchString.toLowerCase()))
-               searchedProducts.push(totalProducts[i])
-         }
-         setProducts(searchedProducts)
-      }
-      search()
+      setSelectedCellar('');
+      setSelectedRegion('');
+      setSelectedReserve('');
+      setSelectedVarietal('');
+      setOrderBy('');
 
-   }, [searchString])
+      const removeAccents = (str: string) => {
+         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      };
+
+      const search = () => {
+         const searchedProducts = totalProducts.filter(product => {
+            const productName = product.name.toLowerCase();
+            const cellarName = product.cellar ? product.cellar.toLowerCase() : '';
+            const varietals = product.varietal ? product.varietal.map((varietal: any) => varietal.toLowerCase()).join() : '';
+
+            const searchStringNormalized = removeAccents(searchString.toLowerCase());
+
+            return (
+               removeAccents(productName).includes(searchStringNormalized) ||
+               removeAccents(cellarName).includes(searchStringNormalized) ||
+               removeAccents(varietals).includes(searchStringNormalized)
+            );
+         });
+
+         setProducts(searchedProducts);
+      };
+
+      search();
+   }, [searchString, totalProducts]);
+
 
    return (
       <GlobalContext.Provider value={{

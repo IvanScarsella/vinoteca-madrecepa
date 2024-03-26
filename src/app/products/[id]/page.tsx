@@ -8,10 +8,9 @@ import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Wine, useGlobalContext } from '../../../../context/store';
+import Loader from '@/app/components/Loader';
 
 export default function Product(id: any) {
-
-
   const [product, setProduct] = useState<Wine>()
   const [type, setType] = useState<string>('')
   const [description, setDescription] = useState<string>('')
@@ -189,21 +188,23 @@ export default function Product(id: any) {
           </div>
           : null}
         <div className={`${product && Object.keys(product).length > 3 ? 'w-1/2 ' : ' w-full flex flex-row justify-around'} max-sm:self-center`}>
-          <Image
-            src={product?.image ? product.image : ''}
-            alt="imagen"
-            width={500}
-            height={500}
-          // className="max-w-full max-h-full"
-          />
+          {product?.image ?
+            <Image
+              src={product?.image ? product.image : ''}
+              alt="imagen"
+              width={500}
+              height={500}
+            // className="max-w-full max-h-full"
+            />
+            : (<Loader />)}
         </div>
       </div>
       <h2 className="text-white text-2xl xl:text-5xl text-center mt-8">
         Consulte por este producto
       </h2>
       <div className="flex items-center justify-center ">
-        <Link
-          href="https://api.whatsapp.com/send/?phone=5492214942853"
+        <a
+          href={`https://api.whatsapp.com/send/?phone=5492214942853&text=Hola,%20me%20gustaría%20consultar%20sobre%20este%20producto:%20https://www.vinotecamadrecepa.com.ar/products/${product?.id}`}
           target="_blank"
         >
           <Image
@@ -213,7 +214,7 @@ export default function Product(id: any) {
             width={100}
             height={100}
           />
-        </Link>
+        </a>
       </div>
       {relatedProducts.length ? <>
         <h4 className="text-white text-3xl text-center my-4">Misma bodega</h4>

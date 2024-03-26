@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
+    "@react-google-maps/api": "^2.19.3",
     "@vercel/postgres": "^0.7.2",
     "axios": "^1.6.7",
     "dotenv": "^16.4.5",

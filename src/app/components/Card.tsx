@@ -3,6 +3,7 @@
 import Image from 'next/image';
 // import image from '../../../public/Moscatel.max-1600x900.png';
 import { useRouter } from 'next/navigation';
+import Loader from './Loader';
 
 export default function Card(data: any) {
   const {
@@ -91,13 +92,15 @@ export default function Card(data: any) {
     >
       <div className="w-[300px] max-sm:w-[400px] flex flex-row justify-center p-2">
         <div className="relative w-60 h-80 max-sm:w-[200px] max-sm:h-[300px] ">
-          <Image
-            src={image}
-            alt="imagen"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-xl rounded-bl-xl"
-          />
+          {image ?
+            <Image
+              src={image}
+              alt="imagen"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-xl rounded-bl-xl"
+            />
+            : (<Loader />)}
         </div>
       </div>
       <div className="flex flex-col justify-around items-center p-2 xl:p-6 max-xl:justify-evenly">

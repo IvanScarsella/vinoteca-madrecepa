@@ -14,6 +14,7 @@ import instagramLogo from '../../public/instagram_logo.png';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Wine, useGlobalContext } from '../../context/store';
+import GoogleMap from './components/GoogleMap';
 
 export default function Home() {
 
@@ -65,21 +66,8 @@ export default function Home() {
           <h2 className=" text-center text-4xl text-white xl:text-6xl">
             Nosotros
           </h2>
-          <p className="main-text indent-2 text-justify mb-4 xl:mx-40 xl:text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            con. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatu. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id es. Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatem accusantium doloremque laudantium, to. Nemo enim ipsam
-            voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-            consequuntur ma Neque porro quisquam est, qui dolorem ipsum quia
-            dolor sit amet, consectetur, adipisci velit, sed qu. Ut enim ad
-            minima veniam, quis nostrum exercitationem ullam corporis suscipit
-            laboriosam, nisi ut al Quis autem vel eum iure reprehenderit qui in
-            ea voluptate velit esse quam nihil molestiae consequatu
+          <p className="main-text indent-2 text-justify mb-4 xl:mx-40 xl:text-2xl max-xl:text-sm">
+            Imagina una pareja de cantantes de ópera, cuyas voces son como diamantes pulidos, y su amor por los buenos vinos es incomparable. Juntos, exploran un mundo de sensaciones y sabores, donde cada botella es una joya por descubrir. Con pasión y conocimiento, comparten la magia de la música y la exquisitez de los vinos selectos con quienes tienen el privilegio de escucharlos y probarlos. Su compromiso con la excelencia y el placer es evidente en cada actuación y cata, cautivando corazones y paladares con su arte y su generosidad. Como verdaderos maestros de la armonía, inspiran a otros a vivir con intensidad y a apreciar las pequeñas maravillas que la vida tiene para ofrecer, convirtiendo cada encuentro en una experiencia inolvidable.
           </p>
         </div>
         <div className="flex justify-center xl:flex-row xl:items-center xl:mx-auto">
@@ -124,14 +112,15 @@ export default function Home() {
         />
       </div>
       {/* <h2 className=' text-center text-4xl text-white'>Calle 123, City Bell</h2> */}
-      <div className="w-1/2 mx-auto">
-        <Image
+      <div className="w-2/3 h-80 mx-auto">
+        {/* <Image
           src={map}
           alt="map"
           width={3000}
           height={3000}
           className="container"
-        />
+        /> */}
+        <GoogleMap />
       </div>
       <div className="flex flex-col xl:flex-row  xl:m-4 xl:items-center xl:mx-auto gap-4 xl:gap-16">
         <h2 className=" text-center text-xl xl:text-3xl text-white mx-8">
