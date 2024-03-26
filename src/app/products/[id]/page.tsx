@@ -17,6 +17,9 @@ export default function Product(id: any) {
   const [relatedProducts, setRelatedProducts] = useState<any[]>([])
 
   function getGradient(varietal: string[]) {
+
+    if (!varietal) return 'from-[#101010] to-[#101010]'
+
     let tinto = false
     let blanco = false
     let rosado = false
@@ -64,15 +67,17 @@ export default function Product(id: any) {
       }
     }
 
-    if (tinto && !blanco && !rosado) { return 'from-[#18010e]' }
-    if (!tinto && blanco && !rosado) { return 'from-[#60541322]' }
-    if (!tinto && !blanco && rosado) { return 'from-[#d7315622]' }
+    if (tinto && !blanco && !rosado) { return 'from-[#18010e] to-[#18010e]' }
+    if (!tinto && blanco && !rosado) { return 'from-[#60541366] to-[#60541366]' }
+    if (!tinto && !blanco && rosado) { return 'from-[#d7315620] to-[#d7315620]' }
 
-    if (tinto && blanco && !rosado) { return 'from-[#18010e] to-[#60541322]' }
-    if (tinto && !blanco && rosado) { return 'from-[#18010e] to-[#d7315622]' }
-    if (!tinto && blanco && rosado) { return 'from-[#60541322] to-[#d7315622]' }
+    if (tinto && blanco && !rosado) { return 'from-[#18010e] to-[#60541366]' }
+    if (tinto && !blanco && rosado) { return 'from-[#18010e] to-[#d7315666]' }
+    if (!tinto && blanco && rosado) { return 'from-[#60541366] to-[#d7315666]' }
 
-    if (tinto && blanco && rosado) { return 'from-[#18010e] via-[#60541322] to-[#d7315622]' }
+    if (tinto && blanco && rosado) { return 'from-[#18010e] via-[#60541366] to-[#d7315666]' }
+
+    if (!tinto && !blanco && !rosado) { return 'from-[#d7315666] via-[#60541366] to-[#18010e]' }
 
   }
   const { totalProducts } = useGlobalContext()

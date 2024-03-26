@@ -21,7 +21,7 @@ export default function Card(data: any) {
   const router = useRouter();
 
   function getGradient(varietal: string[]) {
-    if (!varietal) return
+    if (!varietal) return 'from-[#101010] to-[#101010]'
 
     let tinto = false
     let blanco = false
@@ -70,15 +70,17 @@ export default function Card(data: any) {
       }
     }
 
-    if (tinto && !blanco && !rosado) { return 'from-[#18010e]' }
-    if (!tinto && blanco && !rosado) { return 'from-[#60541366]' }
-    if (!tinto && !blanco && rosado) { return 'from-[#d7315666]' }
+    if (tinto && !blanco && !rosado) { return 'from-[#18010e] to-[#18010e]' }
+    if (!tinto && blanco && !rosado) { return 'from-[#60541366] to-[#60541366]' }
+    if (!tinto && !blanco && rosado) { return 'from-[#d7315666] to-[#d7315666]' }
 
     if (tinto && blanco && !rosado) { return 'from-[#18010e] to-[#60541366]' }
     if (tinto && !blanco && rosado) { return 'from-[#18010e] to-[#d7315666]' }
     if (!tinto && blanco && rosado) { return 'from-[#60541366] to-[#d7315666]' }
 
     if (tinto && blanco && rosado) { return 'from-[#18010e] via-[#60541366] to-[#d7315666]' }
+
+    if (!tinto && !blanco && !rosado) { return 'from-[#d7315666] via-[#60541366] to-[#18010e]' }
 
   }
 
