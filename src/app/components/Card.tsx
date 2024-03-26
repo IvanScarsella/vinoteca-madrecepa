@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-// import image from '../../../public/Moscatel.max-1600x900.png';
 import { useRouter } from 'next/navigation';
 import Loader from './Loader';
 
