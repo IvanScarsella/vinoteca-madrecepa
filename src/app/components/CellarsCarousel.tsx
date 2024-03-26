@@ -6,12 +6,15 @@ import Image from 'next/image';
 import imagen1 from '../../../public/bodega.png';
 import { Wine } from '../../../context/store';
 import Loader from './Loader';
+import { useRouter } from 'next/navigation';
 
 interface CellarsCarouselProps {
   cellars: Wine[];
 }
 
 const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
+
+  const router = useRouter()
 
   const data = cellars.slice(0, 15);
 
@@ -37,11 +40,8 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
         {cellars ?
           <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-2/3 ">
             {data.map((cellar, index) => (
-              <div key={index} className="">
-                <div className="flex w-full flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-gray-900 bg-opacity-100 border-2 border-gray-700 border-opacity-80 p-4">
-                  <p className="font-quattro italic text-sm xl:text-6xl text-white mb-4">
-                    {cellar.cellar}
-                  </p>
+              <div key={index} className="cursor-pointer" onClick={() => router.push(`/products/${cellar.id}`)}>
+                <div className="flex w-full gap-8 max-sm:gap-2 flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-[#1d1d1d] bg-opacity-100 p-4">
                   {cellar.image ? (
                     <Image
                       src={cellar.image}
@@ -53,6 +53,9 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
                   ) : (
                     <Loader />
                   )}
+                  <p className="font-quattro italic text-sm xl:text-6xl text-white">
+                    {cellar.cellar}
+                  </p>
                 </div>
               </div>
             ))}

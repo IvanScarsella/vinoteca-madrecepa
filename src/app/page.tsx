@@ -20,14 +20,14 @@ export default function Home() {
 
   const [cellars, setCellars] = useState<Wine[]>([])
 
-  const { products, setProducts } = useGlobalContext();
+  const { wines, setProducts } = useGlobalContext();
   useEffect(() => {
     const getRelated = async () => {
       try {
         const uniqueCellars: Wine[] = [];
 
-        for (let i = 0; i < products.length; i++) {
-          const product = products[i];
+        for (let i = 0; i < wines.length; i++) {
+          const product = wines[i];
 
           const existingCellarIndex = uniqueCellars.findIndex((item: Wine) => item.cellar === product.cellar);
 
@@ -35,38 +35,46 @@ export default function Home() {
             uniqueCellars.push(product);
           }
         }
-        setCellars(uniqueCellars)
+
+        const randomComparator = () => Math.random() - 0.5;
+
+        const shuffleCellars = uniqueCellars.sort(randomComparator);
+
+        setCellars(shuffleCellars)
       } catch (error) {
         console.error('Error al obtener los productos relacionados:', error);
       }
     };
     getRelated()
-  }, [products])
+  }, [wines])
 
   return (
     <main className="flex flex-col gap-4 px-4">
-      <h1 className="text-white text-sm mx-auto mt-5 xl:text-4xl ">
+      <h1 className="text-white text-4xl mx-auto mt-5 max-lg:text-lg ">
         Los mejores vinos de la ciudad están en
       </h1>
       {/* <p className="text-6xl text-center text-red-600 xl:text-9xl">MAD</p> */}
-      <Image
-        src={logo}
-        alt='logo'
-        width={200}
-        height={200}
-        className='self-center'
-      />
-      <PromoCarousel />
-      <h1 className=" text-center text-4xl text-white xl:text-6xl">
+      <div className='h-48 w-48 lg:h-96  lg:w-96 self-center'>
+
+        <Image
+          src={logo}
+          alt='logo'
+          width={200}
+          height={200}
+          className='container'
+        />
+      </div>
+      <h1 className=" text-center text-2xl sm:text-4xl text-white xl:text-6xl">
         Nuestras Bodegas
       </h1>
       <CellarsCarousel cellars={cellars} />
+      <PromoCarousel />
       <div className="flex flex-col xl:flex-row mx-8 mb-2">
         <div className="flex flex-col justify-around xl:w-1/2">
-          <h2 className=" text-center text-4xl text-white xl:text-6xl">
+          <h2 className=" text-center text-4xl text-white xl:text-6xl mb-4">
             Nosotros
           </h2>
-          <p className="main-text indent-2 text-justify mb-4 xl:mx-40 xl:text-2xl max-xl:text-sm">
+          <p className="main-text indent-2 text-justify mb-4 xl:mx-10 xl:text-2xl max-xl:text-sm">
             Imagina una pareja de cantantes de ópera, cuyas voces son como diamantes pulidos, y su amor por los buenos vinos es incomparable. Juntos, exploran un mundo de sensaciones y sabores, donde cada botella es una joya por descubrir. Con pasión y conocimiento, comparten la magia de la música y la exquisitez de los vinos selectos con quienes tienen el privilegio de escucharlos y probarlos. Su compromiso con la excelencia y el placer es evidente en cada actuación y cata, cautivando corazones y paladares con su arte y su generosidad. Como verdaderos maestros de la armonía, inspiran a otros a vivir con intensidad y a apreciar las pequeñas maravillas que la vida tiene para ofrecer, convirtiendo cada encuentro en una experiencia inolvidable.
           </p>
         </div>
