@@ -38,7 +38,7 @@ function Map() {
          mapContainerStyle={containerStyle}
          // className='w-96 h-96'
          center={center}
-         zoom={16}
+         zoom={15}
          onLoad={onLoad}
          onUnmount={onUnmount}
       >
