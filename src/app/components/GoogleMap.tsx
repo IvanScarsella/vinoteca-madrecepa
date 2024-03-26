@@ -17,38 +17,35 @@ function Map() {
    const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: process.env.GOOGLEMAPS_KEY || ''
-   });
+   })
 
-   const [map, setMap] = React.useState(null);
+   const [map, setMap] = React.useState(null)
 
    const onLoad = React.useCallback(function callback(map: any) {
+
       const bounds = new window.google.maps.LatLngBounds(center);
       map.fitBounds(bounds);
-      setMap(map);
-   }, []);
+
+      setMap(map)
+   }, [])
 
    const onUnmount = React.useCallback(function callback(map: any) {
-      setMap(null);
-   }, []);
-
-   // Modificar la URL de la imagen del mapa para eliminar el token
-   const modifiedMapImageUrl = 'satellite'; // Reemplazar 'URL del mapa sin token' con la URL del mapa sin el token
+      setMap(null)
+   }, [])
 
    return isLoaded ? (
       <GoogleMap
          mapContainerStyle={containerStyle}
+         // className='w-96 h-96'
          center={center}
          zoom={10}
          onLoad={onLoad}
          onUnmount={onUnmount}
-         // Cambiar la URL del mapa a la versión modificada
-         mapTypeId={modifiedMapImageUrl}
       >
          <Marker position={center} />
          <></>
       </GoogleMap>
-   ) : <></>;
+   ) : <></>
 }
-
 
 export default React.memo(Map)
