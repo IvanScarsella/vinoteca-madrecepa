@@ -88,7 +88,7 @@ export default function Product(id: any) {
       if (Product.description) setDescription(Product.description)
     }
     getData()
-  }, [])
+  }, [id])
 
   useEffect(() => {
     const getRelated = async () => {
@@ -221,7 +221,7 @@ export default function Product(id: any) {
         <div className="flex flex-row max-md:flex-col">
           {relatedProducts ?
             relatedProducts.map((item) => (
-              <div className="flex flex-col items-center w-1/2 max-md:w-full cursor-pointer mx-auto hover:scale-110">
+              <div className="flex flex-col items-center w-1/2 max-md:w-full cursor-pointer mx-auto hover:scale-110" key={item.name}>
                 <h4 className="text-white text-2xl text-center">{item.name}</h4>
                 <div className="w-1/2">
                   <Image src={item.image} alt="imagen" width={1000} height={1000} onClick={() => router.push(`/products/${item.id}`)} />

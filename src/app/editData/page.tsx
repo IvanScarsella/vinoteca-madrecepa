@@ -207,6 +207,7 @@ export default function EditData() {
 
                      {data ? data.map(product => (
                         <p
+                           key={product.name}
                            onClick={() => setProduct(product)}
                            className="text-white cursor-pointer border border-red-500 bg-black"
                         >{product.name}</p>
