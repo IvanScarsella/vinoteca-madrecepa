@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             body: JSON.stringify(newProduct),
          });
          const data = await response.json();
-         // console.log(data);
+         console.log(data);
          return res.status(201).json(data);
       } catch (error: any) {
          console.log(error);

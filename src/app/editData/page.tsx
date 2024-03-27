@@ -130,10 +130,9 @@ export default function EditData() {
    useEffect(() => {
       const fetchData = async () => {
          try {
-            const response = await axios.get<Wine[]>('/api/products');
-            const products = response.data;
-
-            setData(products.sort(function (a, b) {
+            const response = await axios.get('/api/products');
+            const products = response.data.wines;
+            setData(products.sort(function (a: any, b: any) {
                if (a.name > b.name) {
                   return 1;
                }
@@ -143,10 +142,10 @@ export default function EditData() {
                return 0;
             }));
 
-            const allOrganic = products.every(product => product.organic);
+            const allOrganic = products.every((product: any) => product.organic);
             setIsOrganic(allOrganic);
 
-            const imageUrls = products.map(product => product.image);
+            const imageUrls = products.map((product: any) => product.image);
             setImageURLs(imageUrls);
          } catch (error) {
             console.error("Error fetching data:", error);

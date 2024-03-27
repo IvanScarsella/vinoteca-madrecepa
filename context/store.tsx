@@ -132,7 +132,7 @@ export const GlobalContextProvider = ({ children }: any) => {
                   'Tinto de Corte',
                ];
                filteredProducts = filteredProducts.filter((product) => {
-                  if (product.varietal) {
+                  if (product.varietal && !product.type) {
                      const varietalsString = product.varietal.join(',');
                      return allowedVarietals.some(varietal => varietalsString.includes(varietal));
                   }
@@ -150,7 +150,7 @@ export const GlobalContextProvider = ({ children }: any) => {
                   'Viognier',
                ];
                filteredProducts = filteredProducts.filter((product) => {
-                  if (product.varietal) {
+                  if (product.varietal && !product.type) {
                      const varietalsString = product.varietal.join(',');
                      return allowedVarietals.some(varietal => varietalsString.includes(varietal));
                   }
@@ -162,7 +162,7 @@ export const GlobalContextProvider = ({ children }: any) => {
                   'Malbec Rosé',
                ];
                filteredProducts = filteredProducts.filter((product) => {
-                  if (product.varietal) {
+                  if (product.varietal && !product.type) {
                      const varietalsString = product.varietal.join(',');
                      return allowedVarietals.some(varietal => varietalsString.includes(varietal));
                   }
