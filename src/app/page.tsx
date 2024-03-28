@@ -2,6 +2,7 @@
 
 import PromoCarousel from '@/app/components/PromoCarousel';
 import CellarsCarousel from './components/CellarsCarousel';
+import CellarsCarousel2 from './components/CellarsCarousel2';
 import Image from 'next/image';
 import imagen from '../../public/imagen.jpg';
 import logo from '../../public/logo.png'
@@ -67,7 +68,12 @@ export default function Home() {
       <h1 className=" text-center text-2xl sm:text-4xl text-white xl:text-6xl">
         Nuestras Bodegas
       </h1>
-      <CellarsCarousel cellars={cellars} />
+      <div className='max-md:hidden'>
+        <CellarsCarousel cellars={cellars} />
+      </div>
+      <div className='md:hidden'>
+        <CellarsCarousel2 cellars={cellars} />
+      </div>
       <PromoCarousel />
       <div className="flex flex-col xl:flex-row mx-8 mb-2">
         <div className="flex flex-col justify-around xl:w-1/2">
