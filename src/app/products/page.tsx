@@ -102,7 +102,7 @@ export default function Products() {
    }, [products])
 
    return (
-      <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4">
+      <main className="p-8 px-24 max-xl:px-8 pt-10 h-full flex flex-col gap-4 ">
          {process.env.NEXT_PUBLIC_DEVELOP ?
             <>
                <button

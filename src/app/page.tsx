@@ -51,23 +51,26 @@ export default function Home() {
 
   return (
     <main className="flex flex-col gap-4 px-4">
-      <h1 className="text-white text-4xl mx-auto mt-5 max-lg:text-lg ">
-        Los mejores vinos de la ciudad están en
-      </h1>
-      {/* <p className="text-6xl text-center text-red-600 xl:text-9xl">MAD</p> */}
-      <div className='h-48 w-48 lg:h-96  lg:w-96 self-center'>
+      <div className='flex flex-col gap-4 lg:gap-0 justify-around mt-6'>
 
-        <Image
-          src={logo}
-          alt='logo'
-          width={200}
-          height={200}
-          className='container'
-        />
+        <h1 className="text-white text-4xl mx-auto mt-6 max-lg:text-lg ">
+          Los mejores vinos de la ciudad están en
+        </h1>
+        {/* <p className="text-6xl text-center text-red-600 xl:text-9xl">MAD</p> */}
+        <div className='h-48 w-48 lg:h-96  lg:w-96 self-center'>
+
+          <Image
+            src={logo}
+            alt='logo'
+            width={200}
+            height={200}
+            className='container'
+          />
+        </div>
+        <h1 className=" text-center text-2xl sm:text-4xl text-white xl:text-6xl">
+          Nuestras Bodegas
+        </h1>
       </div>
-      <h1 className=" text-center text-2xl sm:text-4xl text-white xl:text-6xl">
-        Nuestras Bodegas
-      </h1>
       <div className='max-md:hidden'>
         <CellarsCarousel cellars={cellars} />
       </div>

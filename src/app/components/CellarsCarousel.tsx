@@ -48,9 +48,9 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
       <div className="max-container flex w-full items-center justify-between gap-10 text-justify max-xl:flex-col-reverse">
         {cellars ?
           <>
-            <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-2/3">
+            <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-3/4">
               {data.map((cellar, index) => (
-                <div key={index} className="cursor-pointer border-8 border-transparent p-8 max-lg:p-2 max-xl:p-4" onClick={() => router.push(`/products/${cellar.id}`)}>
+                <div key={index} className="cursor-pointer border-8 border-transparent p-6 max-lg:p-2 max-xl:p-4" onClick={() => router.push(`/products/${cellar.id}`)}>
                   <div className="flex w-full gap-8 max-sm:gap-2 flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-opacity-100 p-4 border-4 border-double border-[#cfab46]">
                     {cellar.image ? (
                       <Image
@@ -58,12 +58,12 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
                         alt={cellar.name}
                         width={400}
                         height={300}
-                        className="rounded-2xl hover:shadow-3xl shadow-white min-h-72 min-w-20"
+                        className="rounded-2xl hover:shadow-3xl shadow-white min-h-72 min-w-20  hover:scale-110"
                       />
                     ) : (
                       <Loader />
                     )}
-                    <p className="font-quattro font-bold italic text-sm md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline -mt-2 tracking-tighter leading-3">
+                    <p className="font-quattro font-bold italic text-sm md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline -mt-2 tracking-tighter leading-3  hover:scale-110">
                       {cellar.cellar}
                     </p>
                   </div>
