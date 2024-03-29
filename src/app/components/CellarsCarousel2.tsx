@@ -40,7 +40,7 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 1000,
+      autoplaySpeed: 3000,
    };
 
    return (
@@ -85,7 +85,7 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
                               ) : (
                                  <Loader />
                               )}
-                              <p className="font-quattro font-bold italic text-xl md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline tracking-tighter leading-3">
+                              <p className="font-quattro font-bold italic text-xl md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline tracking-tighter leading-6">
                                  {cellar.cellar}
                               </p>
                            </div>
