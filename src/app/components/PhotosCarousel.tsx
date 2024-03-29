@@ -9,8 +9,6 @@ import imagen3 from '../../../public/imagen_carrusel_3.jpg';
 import imagen4 from '../../../public/imagen_carrusel_4.jpg';
 import imagen5 from '../../../public/imagen_carrusel_5.jpg';
 import imagen6 from '../../../public/imagen_carrusel_6.jpg';
-import imagen7 from '../../../public/imagen_carrusel_7.jpg';
-import imagen8 from '../../../public/imagen_carrusel_8.jpg';
 
 function PhotosCarousel() {
   const images = [
@@ -19,9 +17,7 @@ function PhotosCarousel() {
     { src: imagen3, alt: 'imagen' },
     { src: imagen4, alt: 'imagen' },
     { src: imagen5, alt: 'imagen' },
-    // { src: imagen6, alt: 'imagen' },
-    // { src: imagen7, alt: 'imagen' },
-    // { src: imagen8, alt: 'imagen' },
+    { src: imagen6, alt: 'imagen' },
   ];
 
   return (
