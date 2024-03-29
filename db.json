@@ -17,7 +17,7 @@
     {
       "id": "50719b4c-06b1-4ae7-9618-4e6bb9def6a3",
       "name": "El Enemigo",
-      "cellar": "Bodega El Enemigo",
+      "cellar": "El Enemigo",
       "region": "Mendoza",
       "reserve": "",
       "barrel": "",
@@ -2959,6 +2959,36 @@
       "milliliters": 750,
       "organic": false,
       "image": "https://i.ibb.co/Vqh093J/Whats-App-Image-2024-03-27-at-12-31-33.jpg"
+    },
+    {
+      "name": "Trapiche Costa y Pampa",
+      "cellar": "Trapiche",
+      "region": "Chapadmalal, Buenos Aires",
+      "reserve": "'Crianza",
+      "barrel": "8 meses",
+      "milliliters": 750,
+      "organic": false,
+      "varietal": [
+        "Pinot Grigio",
+        "Pinot Noir",
+        "Sauvignon Blanc"
+      ],
+      "image": "https://i.ibb.co/YDdB7gP/IMG-3812.jpg"
+    },
+    {
+      "id": "d3781751-40f2-4ff1-9ac8-8aea91da038e",
+      "name": "Trapiche Reserva",
+      "cellar": "Trapiche",
+      "region": "Mendoza",
+      "reserve": "Reserva",
+      "barrel": "12 meses",
+      "varietal": [
+        "Malbec",
+        "Syrah"
+      ],
+      "milliliters": 750,
+      "organic": false,
+      "image": "https://i.ibb.co/597mqww/IMG-3811.jpg"
     }
   ],
   "sparklings": [
@@ -3160,6 +3190,28 @@
         "Chardonnay"
       ],
       "image": "https://i.ibb.co/XZbqHKv/IMG-2136.jpg"
+    },
+    {
+      "id": "819e09f1-53ba-4058-9d85-3078bd9e444a",
+      "name": "La Mascota Extra Brut",
+      "cellar": "Mascota Vineyards",
+      "region": "San Carlos, Mendoza",
+      "type": "Extra Brut",
+      "varietal": [
+        "Pinot Noir"
+      ],
+      "image": "https://i.ibb.co/TbGK32X/IMG-3814.jpg"
+    },
+    {
+      "id": "ac3c689c-1af8-4a19-9628-cf6cd61dec92",
+      "name": "Trapiche Costa y Pampa Extra Brut",
+      "cellar": "Trapiche",
+      "region": "Chapadmalal, Buenos Aires",
+      "type": "Extra Brut",
+      "varietal": [
+        "Chardonnay-Pinot Noir"
+      ],
+      "image": "https://i.ibb.co/D7z3Qvv/IMG-3813.jpg"
     }
   ],
   "otherDrinks": [

@@ -97,6 +97,7 @@ export default function AddProduct() {
       'Malbec Rosé',
       'Merlot',
       'Petit Verdot',
+      'Pinot Grigio',
       'Pinot Noir',
       'Red Blend',
       'Rosado',
