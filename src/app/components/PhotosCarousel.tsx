@@ -11,6 +11,7 @@ import imagen5 from '../../../public/imagen_carrusel_5.jpg';
 import imagen6 from '../../../public/imagen_carrusel_6.jpg';
 
 function PhotosCarousel() {
+
   const images = [
     { src: imagen1, alt: 'imagen' },
     { src: imagen2, alt: 'imagen' },
