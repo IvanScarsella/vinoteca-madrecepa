@@ -85,7 +85,7 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
                               ) : (
                                  <Loader />
                               )}
-                              <p className="font-quattro font-bold italic text-xl md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline tracking-tighter leading-6">
+                              <p className="font-quattro font-bold italic text-center text-xl md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline tracking-tighter leading-6">
                                  {cellar.cellar}
                               </p>
                            </div>

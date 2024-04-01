@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Card from '../components/Card';
 import { MdOutlineSearch } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import { useGlobalContext } from '../../../context/store';
 
 export default function Products() {
@@ -143,7 +142,7 @@ export default function Products() {
                            key={index}
                            className={`
                            ${selectedVarietal === strain ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                            z-0 text-xl text-white font-bold  cursor-pointer`
+                            z-0 text-xl text-white font-bold  cursor-pointer hover:text-white hover:bg-[#AF3935]`
                            }
                            onClick={selectedVarietal === strain ? () => setSelectedVarietal('') : () => setSelectedVarietal(strain)}
                         >
@@ -175,7 +174,7 @@ export default function Products() {
                            key={index}
                            className={`
                            ${selectedRegion === region ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                            z-0 text-xl text-white font-bold  cursor-pointer`
+                            z-0 text-xl text-white font-bold  cursor-pointer hover:text-white hover:bg-[#AF3935]`
                            }
                            onClick={selectedRegion === region ? () => setSelectedRegion('') : () => setSelectedRegion(region)}
                         >
@@ -205,7 +204,7 @@ export default function Products() {
                            key={index}
                            className={`
                            ${selectedReserve === reserve ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                            z-0 text-xl text-white font-bold  cursor-pointer`
+                            z-0 text-xl text-white font-bold  cursor-pointer hover:text-white hover:bg-[#AF3935]`
                            }
                            onClick={selectedReserve === reserve ? () => setSelectedReserve('') : () => setSelectedReserve(reserve)}
                         >
@@ -234,7 +233,7 @@ export default function Products() {
                            key={index}
                            className={`
                            ${orderBy === order ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                            z-0 text-xl text-white font-bold  cursor-pointer`
+                            z-0 text-xl text-white font-bold  cursor-pointer hover:text-white hover:bg-[#AF3935]`
                            }
                            onClick={orderBy === order ? () => setOrderBy('') : () => setOrderBy(order)}
                         >
@@ -273,7 +272,7 @@ export default function Products() {
                               key={index}
                               className={`
                            ${selectedCellar === cellar ? 'scale-110 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                           z-0 text-xl text-white font-bold  cursor-pointer px-2 max-h-[200px]`
+                           z-0 text-xl text-white font-bold  cursor-pointer px-2 max-h-[200px] hover:text-white hover:bg-[#AF3935]`
                               }
                               onClick={selectedCellar === cellar ? () => setSelectedCellar('') : () => setSelectedCellar(cellar)}
                            >

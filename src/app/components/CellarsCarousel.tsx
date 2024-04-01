@@ -50,20 +50,20 @@ const CellarsCarousel: React.FC<CellarsCarouselProps> = ({ cellars }) => {
           <>
             <Slider {...settings} className="flex w-2/3 flex-row mx-auto xl:w-3/4">
               {data.map((cellar, index) => (
-                <div key={index} className="cursor-pointer border-8 border-transparent p-6 max-lg:p-2 max-xl:p-4" onClick={() => router.push(`/products/${cellar.id}`)}>
-                  <div className="flex w-full gap-8 max-sm:gap-2 flex-col flex-1 flex-wrap items-center justify-center max-xl:mt-2 bg-opacity-100 p-4 border-4 border-double border-[#cfab46]">
+                <div key={index} className=" border-8 border-transparent p-6 max-lg:p-2 max-xl:p-4" onClick={() => router.push(`/products/${cellar.id}`)}>
+                  <div className="flex w-full gap-8 max-sm:gap-2 flex-col flex-1 flex-wrap cursor-pointer items-center justify-center max-xl:mt-2 bg-opacity-100 p-4 border-4 border-double border-[#cfab46] hover:bg-gray-950">
                     {cellar.image ? (
                       <Image
                         src={cellar.image}
                         alt={cellar.name}
                         width={400}
                         height={300}
-                        className="rounded-2xl hover:shadow-3xl shadow-white min-h-72 min-w-20  hover:scale-110"
+                        className="rounded-2xl hover:shadow-3xl shadow-white min-h-72 min-w-20"
                       />
                     ) : (
                       <Loader />
                     )}
-                    <p className="font-quattro font-bold italic text-sm md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline -mt-2 tracking-tighter leading-3  hover:scale-110">
+                    <p className="font-quattro font-bold italic text-center text-sm md:text-2xl xl:text-4xl text-[#AF3935] underline decoration-2 underline-offset-2 align-baseline -mt-2 tracking-tighter leading-3  hover:scale-110">
                       {cellar.cellar}
                     </p>
                   </div>

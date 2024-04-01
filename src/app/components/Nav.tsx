@@ -29,7 +29,7 @@ export default function Nav() {
 
   return (
     <>
-      <div className="flex flex-col fixed top-0 w-full z-20">
+      <div className="flex flex-col fixed top-0 w-full z-30">
         <div className=" bg-[#AF3935] flex flex-row justify-between xl:justify-around items-center p-4">
           <div className="ml-2 w-16 h-16">
             <Image
@@ -56,7 +56,7 @@ export default function Nav() {
           {itemsNav.map((item) => (
             <Link href="/products" key={item.title} className='max-xl:hidden'>
               <div
-                className="flex flex-row items-center p-1 gap-2 pl-2 max-xl:hidden"
+                className="flex flex-row items-center p-1 gap-2 pl-2 max-xl:hidden text-white hover:bg-white hover:text-[#AF3935] hover:font-bold"
                 onClick={() => {
                   setSelectedVarietal(item.title);
                   setToggle((toggle) => !toggle)
@@ -64,15 +64,15 @@ export default function Nav() {
                 }}
                 key={item.title}
               >
-                <IoIosWine />
-                <p className="text-2xl text-white">{item.title}</p>
+                <IoIosWine className='text-black' />
+                <p className="text-2xl">{item.title}</p>
               </div>
             </Link>
           ))}
         </div>
       </div>
       {toggle ? (
-        <div className="bg-[#903431] xl:hidden  fixed top-0 w-full z-20">
+        <div className="bg-[#903431] xl:hidden  fixed top-24 w-full z-30">
           {itemsNav.map((item) => (
             <Link href="/products" key={item.title}>
               <div

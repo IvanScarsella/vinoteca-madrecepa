@@ -37,12 +37,12 @@ export default function Nav() {
           <div className="w-full flex flex-col md:flex-row xl:justify-around  xl:gap-8  ">
             {itemsNav.map((item) => (
               <div
-                className="flex flex-row p-1 gap-2 px-auto"
+                className="flex flex-row p-1 gap-2 px-auto "
                 key={item.title}
               >
                 {/* <IoIosWine /> */}
                 <p
-                  className="text-sm md:text-base lg:text-xl text-white cursor-pointer"
+                  className="text-sm md:text-base lg:text-xl text-white cursor-pointer "
                   onClick={() => {
                     setSelectedVarietal(item.title);
                     pathname !== '/products' ? router.push('/products') : null;
@@ -54,7 +54,7 @@ export default function Nav() {
             ))}
           </div>
         </div>
-        <div className="w-1/3 p-4 text-base max-sm:text-xs flex flex-col justify-center gap-2 xl:mx-auto md:pl-32">
+        <div className="w-1/3 p-4 max-sm:-mt-6 text-base max-sm:text-xs flex flex-col justify-center gap-2 xl:mx-auto md:pl-32 text-white">
           <p>Teléfonos:</p>
           <p>221-4942853</p>
           <p>0221-4723895</p>

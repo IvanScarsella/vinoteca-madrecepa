@@ -91,8 +91,8 @@ export default function Home() {
           <Image
             src={imagen}
             alt="imagen"
-            width={3000}
-            height={3000}
+            width={634}
+            height={748}
             className="container h-[300px] w-[250px] xl:h-[596px] xl:w-[496px]"
           />
         </div>
@@ -149,7 +149,7 @@ export default function Home() {
             href="https://www.facebook.com/vinoteca.madrecepa"
             target="_blank"
           >
-            <div className='w-12 sm:w-16'>
+            <div className='w-12 sm:w-16 '>
               <Image
                 src={facebookLogo}
                 alt="Facebook logo"
@@ -163,7 +163,7 @@ export default function Home() {
             href="https://www.instagram.com/vinotecamadrecepa/"
             target="_blank"
           >
-            <div className='w-12 sm:w-16'>
+            <div className='w-12 sm:w-16 '>
               <Image
                 src={instagramLogo}
                 alt="Instagram logo"
@@ -177,7 +177,7 @@ export default function Home() {
             href="https://twitter.com/vinosmadrecepa"
             target="_blank"
           >
-            <div className='w-12 sm:w-16'>
+            <div className='w-12 sm:w-16 '>
               <Image
                 src={xLogo}
                 alt="Instagram logo"

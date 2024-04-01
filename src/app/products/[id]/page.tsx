@@ -95,15 +95,16 @@ export default function Product(id: any) {
     getData()
   }, [id])
 
+  console.log(relatedProducts)
   useEffect(() => {
     const getRelated = async () => {
       const response = await axios.get(`/api/products/`)
-
       if (response.data.wines.filter((item: any) => item.cellar === product?.cellar)) {
-        setRelatedProducts(response.data.sparklings.filter((item: any) => item.cellar === product?.cellar && item.id !== product?.id))
+        const otherProducts: any = response.data.wines.filter((item: any) => item.cellar === product?.cellar && item.id !== product?.id)
+        setRelatedProducts(otherProducts)
       }
 
-      if (response.data.sparklings.filter((item: any) => item.cellar === product?.cellar)) {
+      else if (relatedProducts.length < 1 && response.data.sparklings.filter((item: any) => item.cellar === product?.cellar)) {
         const otherProducts: any = response.data.sparklings.filter((item: any) => item.cellar === product?.cellar && item.id !== product?.id)
         setRelatedProducts(otherProducts)
       }
