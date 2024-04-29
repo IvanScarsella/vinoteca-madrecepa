@@ -9,7 +9,7 @@ export default function WhatsApp() {
       target="_blank"
     >
       <Image
-        className="fixed bottom-5 right-5 hover:scale-125 max-xl: scale-75 max-xl:hover:scale-90"
+        className="z-20 fixed bottom-5 right-5 hover:scale-125 max-xl: scale-75 max-xl:hover:scale-90"
         src={whatsapp_logo}
         alt="whatsapp_logo"
         width={100}

@@ -204,7 +204,7 @@ export default function Products() {
                            key={index}
                            className={`
                            ${selectedReserve === reserve ? 'scale-125 bg-[#AF3935] bg-opacity-100' : 'bg-black bg-opacity-20'}
-                            z-0 text-xl text-white font-bold  cursor-pointer hover:text-white hover:bg-[#AF3935]`
+                            z-0 text-xl text-center ease-in-out text-white font-bold  cursor-pointer hover:text-white hover:bg-[#AF3935]`
                            }
                            onClick={selectedReserve === reserve ? () => setSelectedReserve('') : () => setSelectedReserve(reserve)}
                         >

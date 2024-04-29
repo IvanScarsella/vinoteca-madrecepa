@@ -73,6 +73,21 @@ export const GlobalContextProvider = ({ children }: any) => {
    const [orderBy, setOrderBy] = useState('')
    const [searchString, setSearchString] = useState('')
 
+   const shuffle = (array: any) => {
+      let currentIndex = array.length, temporaryValue, randomIndex;
+      // Mientras queden elementos a reorganizar...
+      while (0 !== currentIndex) {
+         // Seleccionar un elemento restante...
+         randomIndex = Math.floor(Math.random() * currentIndex);
+         currentIndex -= 1;
+         // Intercambiarlo con el elemento actual
+         temporaryValue = array[currentIndex];
+         array[currentIndex] = array[randomIndex];
+         array[randomIndex] = temporaryValue;
+      }
+      return array;
+   }
+
    useEffect(() => {
       const fetchData = async () => {
          try {
@@ -81,8 +96,12 @@ export const GlobalContextProvider = ({ children }: any) => {
             setSparklings(response.data.sparklings)
             setOtherDrinks(response.data.otherDrinks)
             setExtras(response.data.extras)
-            setTotalProducts([...response.data.wines, ...response.data.sparklings, ...response.data.otherDrinks, ...response.data.extras]);
-            setProducts([...response.data.wines, ...response.data.sparklings, ...response.data.otherDrinks, ...response.data.extras]);
+            const allProducts = [...response.data.wines, ...response.data.sparklings, ...response.data.otherDrinks, ...response.data.extras];
+            // Reorganizar aleatoriamente los productos
+            const shuffledProducts = shuffle(allProducts);
+            // Establecer los productos en el estado
+            setTotalProducts(shuffledProducts);
+            setProducts(shuffledProducts);
          } catch (error) {
             console.error('Error fetching products:', error);
          }
@@ -208,6 +227,8 @@ export const GlobalContextProvider = ({ children }: any) => {
             sortedProducts.sort((a: any, b: any) => a.name.localeCompare(b.name));
          } else if (orderBy === 'Z-A') {
             sortedProducts.sort((a: any, b: any) => b.name.localeCompare(a.name));
+         } else if (orderBy === '') {
+            shuffle(sortedProducts);
          }
          setProducts(sortedProducts);
       };
