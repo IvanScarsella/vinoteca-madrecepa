@@ -218,7 +218,7 @@ export default function Products() {
                      className="absolute z-0 top-0 left-0 h-full w-full bg-center bg-no-repeat opacity-60"
                      style={{
                         backgroundImage:
-                           'url("https://esenciawines.com/WebRoot/Store/Shops/EsenciaWines/MediaGallery/Blog/copa_de_vino.jpg")',
+                           'url("https://www.cucinare.tv/wp-content/uploads/2018/08/18-08-21-Copa.jpg")',
                         backgroundSize: '100% 100%',
                      }}
                   />
