@@ -886,7 +886,8 @@
       "reserve": "Gran Reserva",
       "barrel": "24 meses",
       "varietal": [
-        "Malbec"
+        "Malbec",
+        "Rosado Cofermentado"
       ],
       "milliliters": 750,
       "organic": false,
@@ -1063,34 +1064,6 @@
       "image": "https://i.ibb.co/48c0gH1/IMG-3696.jpg"
     },
     {
-      "id": "e0e1ba6f-c487-4160-9931-2724a5c311ac",
-      "name": "Partida Única",
-      "cellar": "Arístides",
-      "region": "Mendoza",
-      "reserve": "Gran Reserva",
-      "barrel": "18 meses",
-      "varietal": [
-        "Pinot Noir"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/YcLwvNt/IMG-3698.jpg"
-    },
-    {
-      "id": "92cb4906-398c-4077-aae1-aa4b206abe1f",
-      "name": "Desterrado",
-      "cellar": "Arístides",
-      "region": "Mendoza",
-      "reserve": "Gran Reserva",
-      "barrel": "18 meses",
-      "varietal": [
-        "Blend"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/ZgW17qr/IMG-3792.jpg"
-    },
-    {
       "id": "e653a7a1-37c0-4ab1-a71f-543a2aad9af1",
       "name": "Festivo",
       "cellar": "Monteviejo",
@@ -1103,35 +1076,6 @@
       "milliliters": 750,
       "organic": false,
       "image": "https://i.ibb.co/R73npxP/IMG-3700.jpg"
-    },
-    {
-      "id": "b30dfa99-24d6-4998-93df-392eca4f072e",
-      "name": "88 Locos",
-      "cellar": "88 Locos",
-      "region": "Mendoza",
-      "reserve": "",
-      "barrel": "",
-      "varietal": [
-        "Malbec",
-        "Cabernet Franc"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/fNCHpGd/IMG-3703.jpg"
-    },
-    {
-      "id": "cb53bbf7-bcf6-461f-b675-20f0ee797617",
-      "name": "88 Locos Reserva",
-      "cellar": "88 Locos",
-      "region": "Mendoza",
-      "reserve": "Reserva",
-      "barrel": "12 meses",
-      "varietal": [
-        "Malbec"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/dGfFWw5/IMG-3704.jpg"
     },
     {
       "id": "09e90d4a-1da3-4d86-8d94-faf795b1a32e",
@@ -1646,21 +1590,6 @@
       "image": "https://i.ibb.co/FxNrvyq/IMG-3741.jpg"
     },
     {
-      "id": "7024769a-fa23-4dec-b4ae-1540605408a0",
-      "name": "Estiba de Familia",
-      "cellar": "Arístides",
-      "region": "Maipú, Mendoza",
-      "reserve": "",
-      "barrel": "",
-      "varietal": [
-        "Malbec",
-        "Merlot"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/9v5fkhj/IMG-3743.jpg"
-    },
-    {
       "id": "a90bdb7e-092b-48ee-bff9-f22d44eced82",
       "name": "Tinto Negro",
       "cellar": "Tinto Negro",
@@ -1795,6 +1724,7 @@
       "reserve": "",
       "barrel": "",
       "varietal": [
+        "Gran Cabernet Franc",
         "Gran Malbec"
       ],
       "milliliters": 750,
@@ -2255,20 +2185,6 @@
       "image": "https://i.ibb.co/fpTdMh7/IMG-2060.jpg"
     },
     {
-      "id": "2b49ecc4-0e4b-4c36-b9d4-b41582bcb172",
-      "name": "Conejo Verde",
-      "cellar": "Conejo Verde",
-      "region": "Mendoza",
-      "reserve": "",
-      "barrel": "",
-      "varietal": [
-        "Malbec"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/2PdPGS8/IMG-2061.jpg"
-    },
-    {
       "id": "e06d6cd5-442d-4ac3-995a-1930e6738311",
       "name": "Oveja Black",
       "cellar": "Casa La Primavera",
@@ -2355,20 +2271,6 @@
       "milliliters": 750,
       "organic": false,
       "image": "https://i.ibb.co/4tB1TpY/IMG-2068.jpg"
-    },
-    {
-      "id": "09d14059-af2f-44e7-a4a0-2526dc7077a1",
-      "name": "Causa",
-      "cellar": "Two Wine Artists",
-      "region": "Luján de Cuyo, Mendoza",
-      "reserve": "",
-      "barrel": "",
-      "varietal": [
-        "Sauvignon Blanc"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/HCnGgzy/IMG-2069.jpg"
     },
     {
       "id": "4e81bc76-bfbc-498b-b589-3b484f1d829f",
@@ -2556,7 +2458,7 @@
     },
     {
       "id": "c84cc3e7-a527-4589-8230-4e774374d051",
-      "name": "Un gran Abito",
+      "name": "Un Gran Abito",
       "cellar": "Abito",
       "region": "Maipú, Mendoza",
       "reserve": "Gran Reserva",
@@ -2567,20 +2469,6 @@
       "milliliters": 750,
       "organic": false,
       "image": "https://i.ibb.co/6PrngbW/IMG-2109.jpg"
-    },
-    {
-      "id": "12e18991-329b-47d4-a9b2-e5adec3b98c7",
-      "name": "Abito",
-      "cellar": "Abito",
-      "region": "Maipú, Mendoza",
-      "reserve": "",
-      "barrel": "",
-      "varietal": [
-        "Malbec"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/7V85QJC/IMG-2110.jpg"
     },
     {
       "id": "0bd3883c-68ec-47dd-8981-f54bd2f3e69b",

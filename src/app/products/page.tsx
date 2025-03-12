@@ -34,6 +34,7 @@ export default function Products() {
       'Tintos',
       'Blancos',
       'Rosados',
+      'Naranjos',
       'Espumantes'
    ];
 
@@ -48,6 +49,8 @@ export default function Products() {
       'Salta',
       'San Juan',
       'Jujuy',
+      'La Rioja',
+      'La Pampa'
       // 'Tucumán',
    ];
 

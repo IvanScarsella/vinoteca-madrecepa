@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import axios from "axios"
 import { Dispatch, SetStateAction } from "react"
+import { redVarietals, whiteVarietals, pinkVarietals, orangeVarietals } from "./varietals"
 
 export const GlobalContext = createContext({
    products: [] as Wine[],
@@ -132,24 +133,8 @@ export const GlobalContextProvider = ({ children }: any) => {
          if (selectedVarietal) {
 
             if (selectedVarietal === 'Tintos') {
-               const allowedVarietals = [
-                  'Ancelotta',
-                  'Bonarda',
-                  'Cabernet',
-                  'Camporotondo',
-                  'Carmenere',
-                  'Malbec',
-                  'Merlot',
-                  'Petit Verdot',
-                  'Pinot Noir',
-                  'Red',
-                  'Sangiovese',
-                  'Syrah',
-                  'Tannat',
-                  'Tempranillo',
-                  'Tinto',
-                  'Tinto de Corte',
-               ];
+               const allowedVarietals = redVarietals;
+
                filteredProducts = filteredProducts.filter((product) => {
                   if (product.varietal && !product.type) {
                      const varietalsString = product.varietal.join(',');
@@ -158,16 +143,8 @@ export const GlobalContextProvider = ({ children }: any) => {
                });
             }
             if (selectedVarietal === 'Blancos') {
-               const allowedVarietals = [
-                  'Blanc',
-                  'Blanca',
-                  'Chardonnay',
-                  'Chenin Dulce',
-                  'Moscatel',
-                  'Semillón',
-                  'Torrontés',
-                  'Viognier',
-               ];
+               const allowedVarietals = whiteVarietals;
+
                filteredProducts = filteredProducts.filter((product) => {
                   if (product.varietal && !product.type) {
                      const varietalsString = product.varietal.join(',');
@@ -176,10 +153,18 @@ export const GlobalContextProvider = ({ children }: any) => {
                });
             }
             if (selectedVarietal === 'Rosados') {
-               const allowedVarietals = [
-                  'Rosado',
-                  'Malbec Rosé',
-               ];
+               const allowedVarietals = pinkVarietals;
+
+               filteredProducts = filteredProducts.filter((product) => {
+                  if (product.varietal && !product.type) {
+                     const varietalsString = product.varietal.join(',');
+                     return allowedVarietals.some(varietal => varietalsString.includes(varietal));
+                  }
+               });
+            }
+            if (selectedVarietal === 'Naranjos') {
+               const allowedVarietals = orangeVarietals;
+
                filteredProducts = filteredProducts.filter((product) => {
                   if (product.varietal && !product.type) {
                      const varietalsString = product.varietal.join(',');

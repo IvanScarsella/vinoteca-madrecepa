@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Loader from './Loader';
+import { redVarietals, whiteVarietals, pinkVarietals, orangeVarietals } from '../../../context/varietals';
 
 export default function Card(data: any) {
   const {
@@ -26,20 +27,11 @@ export default function Card(data: any) {
     let tinto = false
     let blanco = false
     let rosado = false
+    let naranjo = false
 
     for (const item of varietal) {
       if (
-        item === 'Malbec' || /\bMalbec\b/.test(item) ||
-        item === 'Carmenere' || /\bCarmenere\b/.test(item) ||
-        item === 'Merlot' || /\bMerlot\b/.test(item) ||
-        item === 'Cabernet' || /\bCabernet\b/.test(item) ||
-        item === 'Syrah' || /\bSyrah\b/.test(item) ||
-        item === 'Tempranillo' || /\bTempranillo\b/.test(item) ||
-        item === 'Sangiovese' || /\bSangiovese\b/.test(item) ||
-        item === 'Tannat' || /\bTannat\b/.test(item) ||
-        item === 'Tinto' || /\bTinto\b/.test(item) ||
-        item === 'Noir' || /\bNoir\b/.test(item) ||
-        item === 'Bonarda' || /\bBonarda\b/.test(item)
+        redVarietals.toLocaleString().includes(item)
       ) {
         tinto = true;
         break;
@@ -48,12 +40,7 @@ export default function Card(data: any) {
 
     for (const item of varietal) {
       if (
-        item === 'Chardonnay' || /\bChardonnay\b/.test(item) ||
-        item === 'Chenin' || /\bChenin\b/.test(item) ||
-        item === 'Blanc' || /\bBlanc\b/.test(item) ||
-        item === 'Semillón' || /\bSemillón\b/.test(item) ||
-        item === 'Viognier' || /\bViognier\b/.test(item) ||
-        item === 'Torrontés' || /\bTorrontés\b/.test(item)
+        whiteVarietals.toLocaleString().includes(item)
       ) {
         blanco = true;
         break;
@@ -62,25 +49,42 @@ export default function Card(data: any) {
 
     for (const item of varietal) {
       if (
-        item === 'Malbec Rosé' || /\bRose\b/.test(item) ||
-        item === 'Rosado' || /\bRosado\b/.test(item)
+        pinkVarietals.toLocaleString().includes(item)
       ) {
         rosado = true;
         break;
       }
     }
 
-    if (tinto && !blanco && !rosado) { return 'from-[#18010e] to-[#18010e]' }
-    if (!tinto && blanco && !rosado) { return 'from-[#60541366] to-[#60541366]' }
-    if (!tinto && !blanco && rosado) { return 'from-[#d7315666] to-[#d7315666]' }
+    for (const item of varietal) {
+      if (
+        orangeVarietals.toLocaleString().includes(item)
+      ) {
+        naranjo = true;
+        break;
+      }
+    }
 
-    if (tinto && blanco && !rosado) { return 'from-[#18010e] to-[#60541366]' }
-    if (tinto && !blanco && rosado) { return 'from-[#18010e] to-[#d7315666]' }
-    if (!tinto && blanco && rosado) { return 'from-[#60541366] to-[#d7315666]' }
+    if (tinto && !blanco && !rosado && !naranjo) { return 'from-[#18010e] to-[#18010e]' }
+    if (!tinto && blanco && !rosado && !naranjo) { return 'from-[#60541366] to-[#60541366]' }
+    if (!tinto && !blanco && rosado && !naranjo) { return 'from-[#d7315666] to-[#d7315666]' }
+    if (!tinto && !blanco && !rosado && naranjo) { return 'from-[#eb8034] to-[#eb8034]' }
 
-    if (tinto && blanco && rosado) { return 'from-[#18010e] via-[#60541366] to-[#d7315666]' }
+    if (tinto && blanco && !rosado && !naranjo) { return 'from-[#18010e] to-[#60541366]' }
+    if (tinto && !blanco && rosado && !naranjo) { return 'from-[#18010e] to-[#d7315666]' }
+    if (tinto && !blanco && !rosado && naranjo) { return 'from-[#18010e] to-[#eb803466]' }
+    if (!tinto && blanco && rosado && !naranjo) { return 'from-[#60541366] to-[#d7315666]' }
+    if (!tinto && blanco && !rosado && naranjo) { return 'from-[#d7315666] to-[#eb803466]' }
+    if (!tinto && !blanco && rosado && naranjo) { return 'from-[#60541366] to-[#eb803466]' }
 
-    if (!tinto && !blanco && !rosado) { return 'from-[#d7315666] via-[#60541366] to-[#18010e]' }
+    if (tinto && blanco && rosado && !naranjo) { return 'from-[#18010e] via-[#60541366] to-[#d7315666]' }
+    if (tinto && blanco && !rosado && naranjo) { return 'from-[#18010e] via-[#60541366] to-[#eb803466]' }
+    if (tinto && !blanco && rosado && naranjo) { return 'from-[#18010e] via-[#d7315666] to-[#eb803466]' }
+    if (!tinto && blanco && rosado && naranjo) { return 'from-[#60541366] via-[#60541366] to-[#eb803466]' }
+
+    if (tinto && blanco && rosado && rosado) { return 'from-[#18010e] via-[#60541366] via-[#d7315666] to-[#eb8034]' }
+
+    if (!tinto && !blanco && !rosado && !naranjo) { return 'from-[#eb8034] via-[#d7315666] via-[#60541366] to-[#18010e]' }
 
   }
 

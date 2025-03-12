@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { varietals } from "../../../context/varietals";
 
 export default function AddProduct() {
    const [name, setName] = useState("");
@@ -62,69 +63,6 @@ export default function AddProduct() {
          }
       }
    };
-
-   const varietals = [
-      'Ancelotta',
-      'Assamblage',
-      'Blanc de Malbecs',
-      'Blanco Dulce',
-      'Blend',
-      'Blend de Blancas',
-      'Blend de Malbecs',
-      'Blend de Tintos',
-      'Blend (Cabernet Franc - Cabernet Sauvignon - Petit Verdot)',
-      'Blend (Cabernet Franc - Malbec - Merlot)',
-      'Blend (Cabernet Sauvignon - Cabernet Franc)',
-      'Blend (Malbec - Cabernet)',
-      'Blend (Malbec - Cabernet Franc)',
-      'Blend (Malbec - Cabernet Sauvignon - Petit Verdot)',
-      'Blend (Malbec - Cabernet Sauvignon - Petit Verdot - Cabernet Franc)',
-      'Blend (Malbec - Merlot)',
-      'Blend (Malbec - Syrah)',
-      'Blend (Malbec - Tannat)',
-      'Blend (Merlot - Cabernet Sauvignon)',
-      'Blend (Moscatel - Torrontés)',
-      'Bonarda',
-      'Cabernet',
-      'Cabernet Franc',
-      'Cabernet Sauvignon',
-      'Camporotondo',
-      'Carmenere',
-      'Chardonnay',
-      'Chenin Dulce',
-      'Corte',
-      'Corte Tinto',
-      'Dulce Natural',
-      'Gewürztraminer',
-      'Gran Assemblage',
-      'Gran Corte',
-      'Gran Malbec',
-      'Malbec',
-      'Malbec Rosé',
-      'Merlot',
-      'Naranjo',
-      'Pedro Ximénez',
-      'Petit Verdot',
-      'Pinot Grigio',
-      'Pinot Noir',
-      'Red Blend',
-      'Rosado',
-      'Rosado Blend',
-      'Rosé',
-      'Sangiovese',
-      'Sauvignon Blanc',
-      'Semillón',
-      'Syrah',
-      'Tannat',
-      'Tempranillo',
-      'Tinto',
-      'Tinto de Corte',
-      'Torrontés',
-      'Torrontés Dulce Natural',
-      'Torrontés Tardío',
-      'Viognier',
-      'Viognier Dulce',
-   ]
 
    const handleSubmit = async () => {
       try {

@@ -20,6 +20,7 @@ export default function Nav() {
     { title: 'Tintos' },
     { title: 'Blancos' },
     { title: 'Rosados' },
+    { title: 'Naranjos' },
     { title: 'Espumantes' },
     { title: 'Otras bebidas' },
     { title: 'Accesorios' },
@@ -65,7 +66,7 @@ export default function Nav() {
                 key={item.title}
               >
                 <IoIosWine className='text-black' />
-                <p className="text-2xl">{item.title}</p>
+                <p className="text-[22px]">{item.title}</p>
               </div>
             </Link>
           ))}
@@ -85,7 +86,7 @@ export default function Nav() {
                 key={item.title}
               >
                 <IoIosWine />
-                <p className="text-2xl cursor-pointer">{item.title}</p>
+                <p className="text-xl cursor-pointer">{item.title}</p>
               </div>
             </Link>
           ))}
