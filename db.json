@@ -2259,34 +2259,6 @@
       "image": "https://i.ibb.co/DY8rypK/IMG-2067.jpg"
     },
     {
-      "id": "77985a47-8681-4e2c-8fba-2efac689187a",
-      "name": "Causa Reserva",
-      "cellar": "Two Wine Artists",
-      "region": "Luján de Cuyo, Mendoza",
-      "reserve": "Crianza",
-      "barrel": "6 meses",
-      "varietal": [
-        "Malbec"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/4tB1TpY/IMG-2068.jpg"
-    },
-    {
-      "id": "4e81bc76-bfbc-498b-b589-3b484f1d829f",
-      "name": "Efecto",
-      "cellar": "Two Wine Artists",
-      "region": "Valle de Uco, Mendoza",
-      "reserve": "Gran Reserva",
-      "barrel": "20 meses",
-      "varietal": [
-        "Gran Corte"
-      ],
-      "milliliters": 750,
-      "organic": false,
-      "image": "https://i.ibb.co/dBRvzwj/IMG-2070.jpg"
-    },
-    {
       "id": "d588c15e-6cb1-499a-93f7-a9890c4adab1",
       "name": "Sin Reglas",
       "cellar": "Sin reglas Wines",
